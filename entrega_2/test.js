@@ -12,13 +12,13 @@ const misProductos = {
 const main = async () => {
     const id = await miContenedor.save(misProductos)
 
-    await miContenedor.getById(id)
+/*     await miContenedor.getById(id)
 
     await miContenedor.getAll();
     
     await miContenedor.deleteById(id)
     
-    await miContenedor.deleteAll()
+    await miContenedor.deleteAll() */
 }
 
 main()
