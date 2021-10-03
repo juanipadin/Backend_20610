@@ -21,8 +21,11 @@ productosRouter.get('/:id', async (req, res) =>{
     })
 })
 
-productosRouter.post('/', async (req, res) =>{
-    const newProducto = req.body; 
+productosRouter.post('/:name/:precio', async (req, res) =>{
+    const newProducto = {
+        nombre : req.params.name,
+        precio : Number(req.params.precio)
+    }; 
     const idProductoNuevo = await productosContenedor.save(newProducto);
 
     res.send({
@@ -32,6 +35,11 @@ productosRouter.post('/', async (req, res) =>{
             id: idProductoNuevo
     }
 })
+})
+
+productosRouter.put('/:id', async (req, res) =>{
+    const productoAModificar = await productosContenedor.getById(Number(req.params.id))
+    res.send({"producto":productoAModificar})
 })
 
 productosRouter.delete('/:id', async (req, res) =>{
