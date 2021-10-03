@@ -47,7 +47,6 @@ class Contenedor {
             if (resultadoId === undefined){
                 return console.log(null)
             } else{
-                console.log(resultadoId)
                 return resultadoId
             }
         } catch (error){
