@@ -9,6 +9,8 @@ const PORT = 8080;
 server.use(express.json());
 server.use(express.urlencoded({extended: true}))
 
+server.use('/static',express.static('public'))
+
 server.get('/', (req, res) =>{
     console.log('ok');
     res.send({message : new Date().toDateString()})
