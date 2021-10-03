@@ -98,7 +98,25 @@ class Contenedor {
         }
     }
 
+    async update(id, producto){
+        const list = list.getAll();
+        const productoSaved = list. find((item) => item.id === id)
+        if (!productoSaved){
+            console.log(`Error con el Id: ${id} no fue encontrado`)
+            return null
+        }
+        console.log('productoSaved',productoSaved);
+        console.log('producto',producto)
+        const productoUpdate = {
+            ...productoSaved, // SE COPIAN TODOS LOS ATRIBUTOS DE PRODUCTOSAVED EN PRODUCTOUPDATE
+            ...producto // SE COPIAN Y PISAN TODOS LOS ATRIBUTOS DE PRODUCTO EN PRODUCTOUPDATE. ESTO PASA PORQUE NO PUEDE HABER DOS DATOS IGUALES EN JSON
+        };
+        console.log('productoUpdate',productoUpdate)
+        return productoSaved
+    }
+
 }
+
 
 module.exports = Contenedor;
 

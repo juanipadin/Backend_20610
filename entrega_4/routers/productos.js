@@ -39,7 +39,9 @@ productosRouter.post('/:name/:precio', async (req, res) =>{
 
 productosRouter.put('/:id', async (req, res) =>{
     const productoAModificar = await productosContenedor.getById(Number(req.params.id))
-    res.send({"producto":productoAModificar})
+    const datosNuevos = req.body
+    const productoUpdate = await productosContenedor.update(productoAModificar,datosNuevos)
+    res.send({"producto":productoUpdate})
 })
 
 productosRouter.delete('/:id', async (req, res) =>{
