@@ -12,8 +12,7 @@ server.use(express.urlencoded({extended: true}))
 server.use('/api/productos',express.static('public'))
 
 server.get('/', (req, res) =>{
-    console.log('ok');
-    res.send({message : new Date().toDateString()})
+    res.send({message : 'El Servidor Funciona de Forma Correcta'})
 })
 
 server.use('/api/productos', productosRouter)
