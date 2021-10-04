@@ -38,9 +38,8 @@ productosRouter.post('/:name/:precio', async (req, res) =>{
 })
 
 productosRouter.put('/:id', async (req, res) =>{
-    const productoAModificar = await productosContenedor.getById(Number(req.params.id))
     const datosNuevos = req.body
-    const productoUpdate = await productosContenedor.update(productoAModificar,datosNuevos)
+    const productoUpdate = await productosContenedor.update(req.params.id,datosNuevos)
     res.send({"producto":productoUpdate})
 })
 
