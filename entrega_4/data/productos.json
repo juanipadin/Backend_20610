@@ -1,7 +1,7 @@
 [
   {
     "nombre": "Pera",
-    "precio": 11,
+    "precio": 15,
     "id": 1
   },
   {
@@ -28,5 +28,10 @@
     "nombre": "Sandia",
     "precio": 5,
     "id": 6
+  },
+  {
+    "nombreProducto": "a",
+    "precioProducto": "1",
+    "id": 7
   }
 ]

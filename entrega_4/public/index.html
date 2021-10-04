@@ -8,12 +8,10 @@
 </head>
 <body>
     <h1>¡Bienvenido!</h1>
-    <form action="/nombreProducto" enctype="multipart/form-data" method="POST">
-            <p>Ingrese el nombre del producto</p>
-            <input type="text" name="nombreProducto"/>
-            <p>Ingrese el precio del producto</p>
-            <input type="text" name="precioProducto"/>
-            <input type="submit" value="/nombreProducto"/>
+    <form action="/api/productos" method="POST">
+            <input placeholder= "Nombre del Producto" type="text" name="nombre"/>
+            <input placeholder= "Precio" type="number" name="precio"/>
+            <input type="submit" value="Aceptar"/>
     </form>
 </body>
 </html>

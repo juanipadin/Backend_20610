@@ -99,28 +99,35 @@ class Contenedor {
     }
 
     async update(id, producto){
-        const list = await this.getAll();
-        const productoSaved = list.find((item) => item.id === parseInt(id))
-        const indexProductoSaved = list.findIndex((item) => item.id === parseInt(id))
-
-        if (!productoSaved){
-            console.log(`Error con el Id: ${id} no fue encontrado`)
-            return null
+        try {
+            const list = await this.getAll();
+            const productoSaved = list.find((item) => item.id === parseInt(id))
+            const indexProductoSaved = list.findIndex((item) => item.id === parseInt(id))
+    
+            if (!productoSaved){
+                console.log(`Error con el Id: ${id} no fue encontrado`)
+                return null
+            }
+    
+            const productoUpdate = {
+                ...productoSaved, // SE COPIAN TODOS LOS ATRIBUTOS DE PRODUCTOSAVED EN PRODUCTOUPDATE
+                ...producto // SE COPIAN Y PISAN TODOS LOS ATRIBUTOS DE PRODUCTO EN PRODUCTOUPDATE. ESTO PASA PORQUE NO PUEDE HABER DOS DATOS IGUALES EN JSON
+            };
+            // SE PONE EL NUEVO ELEMENTO EN LA LISTA
+            list[indexProductoSaved] = productoUpdate
+    
+            console.log(list[indexProductoSaved])
+    
+            // SE GUARDA LA LISTA
+            const elementString = JSON.stringify(list, null, 2)
+            await fs.promises.writeFile(`./${this.nombreArchivo}`, elementString);
+    
+            return productoUpdate
         }
-
-        const productoUpdate = {
-            ...productoSaved, // SE COPIAN TODOS LOS ATRIBUTOS DE PRODUCTOSAVED EN PRODUCTOUPDATE
-            ...producto // SE COPIAN Y PISAN TODOS LOS ATRIBUTOS DE PRODUCTO EN PRODUCTOUPDATE. ESTO PASA PORQUE NO PUEDE HABER DOS DATOS IGUALES EN JSON
-        };
-
-        list[indexProductoSaved] = productoUpdate
-        console.log(list[indexProductoSaved])
-        const elementString = JSON.stringify(list, null, 2)
-        await fs.promises.writeFile(`./${this.nombreArchivo}`, elementString);
-
-        return productoUpdate
+        catch (error){
+            console.error('Error de lectura',error)
+        }
     }
-
 }
 
 

@@ -21,11 +21,8 @@ productosRouter.get('/:id', async (req, res) =>{
     })
 })
 
-productosRouter.post('/:name/:precio', async (req, res) =>{
-    const newProducto = {
-        nombre : req.params.name,
-        precio : Number(req.params.precio)
-    }; 
+productosRouter.post('/', async (req, res) =>{
+    const newProducto = req.body; 
     const idProductoNuevo = await productosContenedor.save(newProducto);
 
     res.send({
@@ -40,8 +37,21 @@ productosRouter.post('/:name/:precio', async (req, res) =>{
 productosRouter.put('/:id', async (req, res) =>{
     const datosNuevos = req.body
     const productoUpdate = await productosContenedor.update(req.params.id,datosNuevos)
-    res.send({"producto":productoUpdate})
+
+    if (!productoUpdate){
+        res.send({
+            error : 'Producto no encontrado',
+            data : productoUpdate
+        })
+
+    } else{
+        res.send({
+            message :'Operación Exitosa',
+            data : productoUpdate
+        })
+    }
 })
+
 
 productosRouter.delete('/:id', async (req, res) =>{
     idProducto = Number(req.params.id)
