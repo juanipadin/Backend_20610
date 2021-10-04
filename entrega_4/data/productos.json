@@ -33,5 +33,10 @@
     "nombre": "Pera",
     "precio": "150",
     "id": 7
+  },
+  {
+    "nombre": "Limon",
+    "precio": "88",
+    "id": 8
   }
 ]
