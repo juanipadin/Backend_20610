@@ -30,8 +30,8 @@
     "id": 6
   },
   {
-    "nombreProducto": "a",
-    "precioProducto": "1",
+    "nombre": "Pera",
+    "precio": "150",
     "id": 7
   }
 ]
