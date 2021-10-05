@@ -45,7 +45,7 @@ class Contenedor {
             const listaDeProductos = JSON.parse(contenido)
             const resultadoId = listaDeProductos.find(numero => numero.id === number)
             if (resultadoId === undefined){
-                return console.log(null)
+                return null
             } else{
                 return resultadoId
             }
@@ -73,13 +73,16 @@ class Contenedor {
             const listaDeProductos = JSON.parse(contenido)
 
             const resultadoId = listaDeProductos.find(number => number.id === numero)
-            const index = listaDeProductos.indexOf(resultadoId);
-            listaDeProductos.splice(index, 1);
-            const listaNew = JSON.stringify(listaDeProductos)
-
-            await fs.promises.writeFile(`./${this.nombreArchivo}`,listaNew);
-            console.log('El producto seleccionado se eliminó de forma correcta')
-
+            if (!resultadoId){
+                return null
+            } else{
+                const index = listaDeProductos.indexOf(resultadoId);
+                listaDeProductos.splice(index, 1);
+                const listaNew = JSON.stringify(listaDeProductos)
+    
+                await fs.promises.writeFile(`./${this.nombreArchivo}`,listaNew);
+                console.log('El producto seleccionado se eliminó de forma correcta')
+            }
 
         } catch (error){
             console.error('Error de lectura',error)

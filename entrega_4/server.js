@@ -9,7 +9,7 @@ const PORT = 8080;
 server.use(express.json());
 server.use(express.urlencoded({extended: true}))
 
-server.use('/api/productos',express.static('public'))
+server.use('/api/',express.static('public'))
 
 server.get('/', (req, res) =>{
     res.send({message : 'El Servidor Funciona de Forma Correcta'})

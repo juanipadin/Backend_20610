@@ -57,13 +57,13 @@ productosRouter.put('/:id', async (req, res) =>{
 
 productosRouter.delete('/:id', async (req, res) =>{
     idProducto = Number(req.params.id)
-    if (!idProducto){
-        res.send({ error : 'producto no encontrado' })
+    const productoAEliminiar = await productosContenedor.getById(idProducto)
+    if (productoAEliminiar === null ){
+        res.send({ error : 'Producto no Encontrado' })
     }else {
         await productosContenedor.deleteById(idProducto);
         res.send({ message : 'Producto Eliminado de Forma Correcta' })
     }
-
 })
 
 module.exports = productosRouter;
