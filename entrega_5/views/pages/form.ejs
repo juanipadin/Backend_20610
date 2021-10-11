@@ -7,16 +7,13 @@
     <header><%- include('../partials/header'); %></header>
     <main>
       <div class="jumbotron">
-        <label for="medidor"><%- titulo %></label>
-        <span><%= min %></span>
-        <meter
-          id="medidor"
-          min="<%= min %>"
-          max="<%= max %>"
-          value="<%= nivel %>"
-        >
-        </meter>
-        <span><%= max %></span>
+
+        <form action="/form" method="POST">
+            Nombre: <input placeholder= "Nombre del Producto" type="text" value="nombre"/>
+            <input placeholder= "Precio" type="number" value="precio"/>
+            <input type="submit" value="Aceptar"/>
+    </form>
+
       </div>
     </main>
     <footer><%- include('../partials/footer'); %></footer>
