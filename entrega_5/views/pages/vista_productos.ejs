@@ -8,39 +8,47 @@
     <header><%- include('../partials/header'); %></header>
 
     <main>
-      <table class="table table-striped">
-      <thead>
+      <p class="h2">Vista de Productos</p>
+
+<% if(productos == undefined ||productos.length === 0){ %>
+    <div class="p-3 mb-2 bg-warning text-dark">No se Encontraron Productos</div>
+
+<% } else{ %>  
+  <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">ID</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Precio</th>
+      <th scope="col">Foto</th>
+    </tr>
+  </thead>
+    <tbody>
+      <% productos.forEach(function(producto) { %>
         <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Nombre</th>
-          <th scope="col">Precio</th>
-          <th scope="col">Foto</th>
+          <td>
+            <%= producto.id %>
+          </td>
+          <td>
+            <%= producto.nombre %>
+          </td>
+          <td>
+            <%= producto.precio %>
+          </td>
+          <td>
+            <img src="<%= producto.foto %>" alt="" width="50" height="50"> 
+          </td>
         </tr>
-      </thead>
-        <tbody>
-          <% productos.forEach(function(producto) { %>
-            <tr>
-              <td>
-                <%= producto.id %>
-              </td>
-              <td>
-                <%= producto.nombre %>
-              </td>
-              <td>
-                <%= producto.precio %>
-              </td>
-              <td>
-               <img src="<%= producto.foto %>" alt="" width="50" height="60"> 
-              </td>
-            </tr>
-            <% }); %>
-      </tbody>
-    </table>
-
-
-
-    <a href="./form.ejs" class="btn btn-primary">Formulario</a>
-
+        <% }); %>
+  </tbody>
+  </table>
+<% } %>
+      
+<p> </p>
+<center>
+    <a href="./list-productos" class="btn btn-primary">Lista de Productos</a>
+    <a href="./form" class="btn btn-primary">Formulario</a>
+</center>
     </main>
     <footer><%- include('../partials/footer'); %></footer>
   </body>
