@@ -1,6 +1,6 @@
 const fs = require('fs')
 
-const Contenedor = require('./contenedor')
+const Contenedor = require('../entrega_5/contenedor')
 
 const miContenedor = new Contenedor('data/productos.json');
 
