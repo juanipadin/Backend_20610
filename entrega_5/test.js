@@ -2,7 +2,7 @@ const fs = require('fs')
 
 const Contenedor = require('./contenedor')
 
-const miContenedor = new Contenedor('productos.json');
+const miContenedor = new Contenedor('data/productos.json');
 
 const misProductos = {
     'nombre' : 'Pera',

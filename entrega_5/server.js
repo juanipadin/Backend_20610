@@ -7,10 +7,16 @@ app.set('view engine', 'ejs');
 const Contenedor = require('./contenedor');
 const productosContenedor = new Contenedor('/data/productos.json')
 
-app.use('/productos',express.static('public'))
+app.use('/api/',express.static('public'))
+
+/* app.get('/form', (req, res) =>{
+    res.send
+}) */
+
 
 app.post('/productos', async (req, res) =>{
     const newProducto = req.body; 
+    console.log(newProducto)
     const idProductoNuevo = await productosContenedor.save(newProducto);
     res.send({
         message : 'success',
@@ -21,11 +27,9 @@ app.post('/productos', async (req, res) =>{
 })
 })
 
-async function  hola (dato){
-    await productosContenedor.save(dato)
-}
+app.get('/lista-productos', async (req, res) =>{
 
-hola('nombre: juan')
+})
 
 const PORT = 8080;
 app.listen(PORT, () => console.log(`Servidor iniciado en el puerto ${PORT}`));
