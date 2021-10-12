@@ -4,26 +4,13 @@ const app = express()
 
 app.set('view engine', 'ejs');
 
-const Contenedor = require('../entrega_3/contenedor');
+const Contenedor = require('./contenedor');
 const productosContenedor = new Contenedor('/data/productos.json')
 
-/* app.get("/form", (req, res) => {
-    res.render("pages/datos", {
-        min : req.query.min,
-        nivel : req.query.nivel,
-        max : req.query.max,
-        titulo : req.query.titulo,
-    });}); */
+app.use('/productos',express.static('public'))
 
-    app.get('/form', (req,res) =>{
-        res.render('pages/form',{
-            nombre : req.query.nombre,
-            precio : req.query.precio
-        })
-    })
-    
-app.post('/form', async (req, res) =>{
-    const newProducto = req.query; 
+app.post('/productos', async (req, res) =>{
+    const newProducto = req.body; 
     const idProductoNuevo = await productosContenedor.save(newProducto);
     res.send({
         message : 'success',
@@ -34,8 +21,11 @@ app.post('/form', async (req, res) =>{
 })
 })
 
+async function  hola (dato){
+    await productosContenedor.save(dato)
+}
 
-
+hola('nombre: juan')
 
 const PORT = 8080;
 app.listen(PORT, () => console.log(`Servidor iniciado en el puerto ${PORT}`));
