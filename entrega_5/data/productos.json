@@ -18,9 +18,15 @@
     "id": 3
   },
   {
-    "nombre": "Rueda",
+    "nombre": "Rueda Rodado 26",
     "precio": "200",
     "foto": "https://cdn3.iconfinder.com/data/icons/bicycle-part/32/Bicycle_part_spoke_wheel-256.png",
     "id": 4
+  },
+  {
+    "nombre": "Medias de Competencia",
+    "precio": "3",
+    "foto": "https://cdn1.iconfinder.com/data/icons/bicycle-apparel/1772/Craft_Cool_Bike_Socks_Cycling_Socks-256.png",
+    "id": 5
   }
 ]

@@ -7,6 +7,9 @@ app.set('view engine', 'ejs');
 const Contenedor = require('./contenedor');
 const productosContenedor = new Contenedor('/data/productos.json')
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}))
+
 app.get('/form', async (req, res) =>{
     res.render('pages/form',{
     })
@@ -14,15 +17,11 @@ app.get('/form', async (req, res) =>{
 
 app.post('/productos', async (req, res) =>{
     const newProducto = req.body; 
+    console.log(newProducto)
     const idProductoNuevo = await productosContenedor.save(newProducto);
-    res.send({
-        message : 'success',
-        data: {
-            ...newProducto,
-            id: idProductoNuevo
-    }
+    res.redirect('/list-productos');
 })
-})
+
 
 app.get('/list-productos', async (req, res) =>{
     const productos = await productosContenedor.getAll()
