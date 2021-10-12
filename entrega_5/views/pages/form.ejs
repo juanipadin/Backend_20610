@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+    <head>
     <%- include('../partials/head'); %>
-  </head>
-  <body>
+    </head>
+    <body>
     <header><%- include('../partials/header'); %></header>
+
     <main>
-      <div class="jumbotron">
 
-        <form action="/form" method="POST">
-            Nombre: <input placeholder= "Nombre del Producto" type="text" value="nombre"/>
-            <input placeholder= "Precio" type="number" value="precio"/>
-            <input type="submit" value="Aceptar"/>
-    </form>
+    <a href="./vista_productos.ejs" class="btn btn-primary">Lista de Productos</a>
 
-      </div>
     </main>
     <footer><%- include('../partials/footer'); %></footer>
-  </body>
+    </body>
 </html>

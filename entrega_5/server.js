@@ -2,7 +2,7 @@ const express = require('express')
 
 const app = express()
 
-/* app.set('view engine', 'ejs'); */
+app.set('view engine', 'ejs');
 
 const Contenedor = require('./contenedor');
 const productosContenedor = new Contenedor('/data/productos.json')
@@ -26,8 +26,11 @@ app.post('/api/productos', async (req, res) =>{
 })
 })
 
-app.get('/lista-productos', async (req, res) =>{
-
+app.get('/api/list-productos', async (req, res) =>{
+    const productos = await productosContenedor.getAll()
+    res.render('pages/vista_productos',{
+        productos : productos,
+    })
 })
 
 const PORT = 8080;
