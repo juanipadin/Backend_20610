@@ -11,14 +11,26 @@ form.addEventListener('submit', (event) => {
   socket.emit('new-product', {nombre, precio, foto});
 });
 
-socket.on('products', (products) => {
-  console.log(products);
+socket.on('productos', (productos) => {
+    
+  console.log(productos);
   
-  const productList = products.map((product) => `
-    <li>Nombre: ${product.nombre} - Precio: ${product.precio}</li>
+  
+  const productList = productos.map((product) => `
+  <tr>
+          <td>
+            ${product.nombre}
+          </td>
+          <td>
+            ${product.precio}
+          </td>
+          <td>
+            <img src="${product.foto}" alt="" width="50" height="50">
+          </td>
+        </tr>
   `).join(' ');
-
+  console.log(productList)
   const list = document.getElementById('real-time-products');
 
-  list.innerHTML = `<ul>${productList}</ul>`;
+  list.innerHTML = productList;
 })

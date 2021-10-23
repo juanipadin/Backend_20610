@@ -5,12 +5,10 @@ const { connected } = require( 'process' );
 
 const Contenedor = require('./contenedor');
 const productosContenedor = new Contenedor('/data/productos.json')
-/* const { getMessages, saveMessage } = require( './models/messages' ); */
 
 const app = express();
 const httpServer = new HttpServer(app);
 const io = new SocketServer(httpServer);
-
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
@@ -29,15 +27,8 @@ io.on('connection', async (socket) => {
     } )
 })
 
-app.get('/list-productos', async (req, res) =>{
-    const productos = await productosContenedor.getAll()
-    res.render('pages/index',{
-        productos : productos,
-    })
-})
-
 app.get('/form', async (req, res) =>{
-    res.render ('../views/pages/form') //VER ESTO YA QUE NO ESTÁ CREADO
+    res.render ('../views/pages/form')
 })
 
 app.post('/productos', async (req, res) =>{
@@ -46,6 +37,15 @@ app.post('/productos', async (req, res) =>{
     const idProductoNuevo = await productosContenedor.save(newProducto);
     res.redirect('/list-productos');
 }) 
+
+app.get('/list-productos', async (req, res) =>{
+    const productos = await productosContenedor.getAll()
+    res.render('pages/vista_producto',{
+        productos : productos,
+    })
+})
+
+
 
 const PORT = 8080;
 const connectedServer = httpServer.listen(PORT, () => {
