@@ -76,5 +76,59 @@
     "precio": "66666666666666",
     "foto": "https://www.osde.com.ar/index.html#!tramites-en-linea.html",
     "id": 13
+  },
+  {
+    "nombre": "fdddd",
+    "precio": "22222222222222222",
+    "foto": "http://localhost:8080/list-productos",
+    "id": 14
+  },
+  {
+    "nombre": "11111",
+    "precio": "9999999",
+    "foto": "http://localhost:8080/list-productos",
+    "id": 15
+  },
+  {
+    "articulo": "fadsfa",
+    "precio": "333",
+    "imagen": "https://github.com/HernanGH/backend-20610/blob/afterclass5/public/js/main.js",
+    "id": 16
+  },
+  {
+    "articulo": "fadsfa",
+    "precio": "333",
+    "imagen": "https://github.com/HernanGH/backend-20610/blob/afterclass5/public/js/main.js",
+    "id": 17
+  },
+  {
+    "articulo": "fadsfa",
+    "precio": "99999",
+    "imagen": "https://github.com/HernanGH/backend-20610/blob/afterclass5/public/js/main.js",
+    "id": 18
+  },
+  {
+    "articulo": "adf",
+    "precio": "33333333333333",
+    "imagen": "https://plataforma.coderhouse.com/cursos/20610/programacion-backend",
+    "id": 19
+  },
+  {
+    "articulo": "333333333333",
+    "precio": "123213213",
+    "imagen": "https://plataforma.coderhouse.com/cursos/20610/programacion-backend",
+    "id": 20
+  },
+  {
+    "nombre": "ererererer",
+    "precio": "2222",
+    "foto": "https://github.com/HernanGH/backend-20610/blob/afterclass5/views/partials/head.ejs",
+    "id": 21
+  },
+  {
+    "nombre": "ererererer",
+    "precio": "2222",
+    "foto": "https://github.com/HernanGH/backend-20610/blob/afterclass5/views/partials/head.ejs",
+    "id": 22
   }
 ]

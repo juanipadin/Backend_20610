@@ -11,18 +11,33 @@ const app = express();
 const httpServer = new HttpServer(app);
 const io = new SocketServer(httpServer);
 
-app.set('view engine', 'ejs');
 
 app.use(express.json());
 app.use(express.urlencoded({extended: true}))
 
+app.use( express.static('public') );
 
+app.set('view engine', 'ejs');
 
-const sitio = app.get('/list-productos', async (req, res) =>{
+io.on('connection', async (socket) => {
+    console.log(`Nuevo cliente conectado ${socket.id}`)
+    
+    socket.on('new-product', async(producto) =>{
+        await productosContenedor.save(producto);
+        const productos = await productosContenedor.getAll()
+        io.sockets.emit('productos', productos) 
+    } )
+})
+
+app.get('/list-productos', async (req, res) =>{
     const productos = await productosContenedor.getAll()
     res.render('pages/index',{
         productos : productos,
     })
+})
+
+app.get('/form', async (req, res) =>{
+    res.render ('../views/pages/form') //VER ESTO YA QUE NO ESTÁ CREADO
 })
 
 app.post('/productos', async (req, res) =>{
@@ -31,24 +46,6 @@ app.post('/productos', async (req, res) =>{
     const idProductoNuevo = await productosContenedor.save(newProducto);
     res.redirect('/list-productos');
 }) 
-
-io.on('connection', (socket) => {
-    console.log(`Nuevo cliente conectado ${socket.id}`)
-
-    socket.emit('sitio', sitio)
-    socket.on('new-product', (sitio) =>{
-        io.sockets.emit('sitio', sitio) 
-    } )
-    
-/*     socket.on('new-message', (message) =>{
-        saveMessage(message) 
-
-        const messages = getMessages(); 
-        io.sockets.emit('messages', messages) 
-
-    })  */
-})
-
 
 const PORT = 8080;
 const connectedServer = httpServer.listen(PORT, () => {
