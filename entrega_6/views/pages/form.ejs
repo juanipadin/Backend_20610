@@ -11,7 +11,7 @@
         <p> </p>
         <p class="h2">Ingrese Producto</p>
         <p> </p>
-        <form id="form">
+        <form id="form" >
             <div class="form-group">
                 <label for="exampleInputEmail1">Nombre del Producto</label>
                 <input name= "nombre" type="text" class="form-control" id="nombre" aria-describedby="emailHelp" placeholder="Ingrese el Nombre del Producto">
@@ -29,17 +29,27 @@
             </form>
 
         <table class="table table-striped">
-        <thead>
-            <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Foto</th>
-            </tr>
-        </thead>
+            <thead>
+                <tr>
+                <th scope="col">Nombre</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Foto</th>
+                </tr>
+            </thead>
             <tbody id="real-time-products">
             
-          </tbody>
-  </table>
+            </tbody>
+        </table>
+        
+        <div id="messages"></div>
+    <hr/>
+    <form id="chat_form" >
+        <p class= "h2">Centro de Mensajes</p>
+        <input type="text" id="username" placeholder="Ingrese su E-Mail" type= "email" required>
+        <div id="lista_mensaje_final"></div>
+        <input type="text" id="texto" placeholder="Escriba aquí su mensaje">
+        <input type="submit" value="Enviar">
+    </form>
 
     </main>
     <footer><%- include('../partials/footer'); %></footer>
