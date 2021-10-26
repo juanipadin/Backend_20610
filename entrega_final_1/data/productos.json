@@ -9,7 +9,7 @@
     "nombre": "Casco de BMX",
     "precio": 33,
     "foto": "https://cdn0.iconfinder.com/data/icons/bicycle-parts-components-and-accessories/1772/Bicycle_Helmet___Bicycle_Bike_Helmet_Equipment_Protect-256.png",
-    "id": 1
+    "id": 2
   },
   {
     "nombre": "Casco Clásico",
@@ -28,5 +28,11 @@
     "precio": "3",
     "foto": "https://cdn1.iconfinder.com/data/icons/bicycle-apparel/1772/Craft_Cool_Bike_Socks_Cycling_Socks-256.png",
     "id": 5
+  },
+  {
+    "nombre": "Kit de Herramientas",
+    "precio": 11,
+    "foto": "https://http2.mlstatic.com/D_NQ_NP_931475-MLA44452660568_122020-V.jpg",
+    "id": 6
   }
 ]
