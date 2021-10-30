@@ -22,7 +22,7 @@ class Contenedor {
                 } else { //2.2 Si hay un ID, suma al anterior
                     const listaDeProductos = JSON.parse(contenido);
                     newProduct.id = listaDeProductos[listaDeProductos.length -1].id + 1;
-                    //const fecha = new Date().toLocaleString()
+                    newProduct.timestamp = Date.now()
                     listaDeProductos.push(newProduct);
                     productos = listaDeProductos
                 }

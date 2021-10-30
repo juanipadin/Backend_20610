@@ -3,63 +3,45 @@ const express = require('express');
 const carritoRouter = express.Router();
 
 const Contenedor = require('../../contenedor');
-const carritoContenedor = new Contenedor('./data/carrito.json');
+const { createCart, deleteCart, getByIdCart, addProductsToCart, deleteProductToCart } = require( '../models/cart' );
+const productosContenedor = new Contenedor('./data/productos.json');
+
 
 carritoRouter.post('/', async (req, res) =>{
-    const newCarrito = req.body; 
-    const idcarritoSaved = await carritoContenedor.save(newCarrito);
+    const cart = req.body; 
+    const idCartSaved = await createCart(cart);
+    res.send({
+        message : 'Se registró con éxito el producto',
+        data: { idCartSaved }})
+    })
 
-    res.send(`El carrtio se guardó de forma satisfactoria siendo su ID el: ${idcarritoSaved}`)
-})
-
+    
 carritoRouter.delete('/:id', async (req, res) =>{
     idCarrito = Number(req.params.id)
-    const carritoAEliminiar = await carritoContenedor.getById(idCarrito)
-    if (carritoAEliminiar === null ){
-        res.send('Carrito no Encontrado')
-    }else {
-        await carritoContenedor.deleteById(idCarrito);
-        res.send('Carrito Eliminado de Forma Correcta' )
-    }
+    const carritoAEliminiar = await deleteCart(idCarrito)
+    res.send({carritoAEliminiar})
 })
 
 carritoRouter.get('/:id/productos', async (req, res) =>{
-    const listaDecarrito = await carritoContenedor.getAll()
-    res.send({listaDecarrito})
-})
-
-carritoRouter.get('/:id', async (req, res) =>{
-    //const lista = await carritoContenedor.getAll()
     const idCarrito = Number(req.params.id)
-    const carritoeleccionado = await carritoContenedor.getById(idCarrito)
-        if (!carritoeleccionado){
-        res.send({ error : 'producto no encontrado' })
-    }else{
-        res.send({
-            data: carritoeleccionado
-        })
-    }
-    res.send({carritoeleccionado})
+    const carritoSeleccionado = await getByIdCart(idCarrito)
+    res.send({carritoSeleccionado})
+}) 
+
+carritoRouter.post('/:id/productos', async (req, res) =>{
+    const idCarrito = Number(req.params.id)
+    const cartNew  = req.body
+
+    const carritoUpdated = await addProductsToCart(idCarrito, cartNew)
+    res.send({carritoUpdated})
+}) 
+
+carritoRouter.delete('/:id/productos/:id_prod', async (req, res) =>{
+    idCarrito = Number(req.params.id);
+    idProducto = Number(req.param.id_prod)
+
+    const productoAEliminiarPorCarrito = await deleteProductToCart(idCarrito,idProducto)
+    res.send({productoAEliminiarPorCarrito})
 })
-
-
-carritoRouter.put('/:id', async (req, res) =>{
-    const datosNuevos = req.body
-    const productoUpdate = await carritoContenedor.update(req.params.id,datosNuevos)
-
-    if (!productoUpdate){
-        res.send({
-            error : 'Producto no encontrado',
-            data : productoUpdate
-        })
-
-    } else{
-        res.send({
-            message :'Operación Exitosa',
-            data : productoUpdate
-        })
-    }
-})
-
 
 module.exports = carritoRouter;

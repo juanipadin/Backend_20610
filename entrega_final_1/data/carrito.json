@@ -3,5 +3,29 @@
     "nombre": "Juego de PS4",
     "precio": 15,
     "id": 1
+  },
+  {
+    "nombre": "Juego de PS4",
+    "precio": 15,
+    "id": 2
+  },
+  {
+    "producto": [
+      {
+        "nombre": "Juego de PS4",
+        "precio": 15
+      }
+    ],
+    "id": 3
+  },
+  {
+    "producto": [
+      {
+        "nombre": "Juego de PS4",
+        "precio": 8188
+      }
+    ],
+    "id": 4,
+    "timestamp": "1,635,550,349,429"
   }
 ]

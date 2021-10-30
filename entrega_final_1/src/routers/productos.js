@@ -22,10 +22,7 @@ productosRouter.post('/', async (req, res) =>{
     const idProductosSaved = await createProducts(newProducto);
     res.send({
         message : 'Se registró con éxito el producto',
-        data: {
-            ...newProducto,
-            id: idProductosSaved
-    }})
+        data: { idProductosSaved }})
 })
 
 productosRouter.put('/:id', async (req, res) =>{
