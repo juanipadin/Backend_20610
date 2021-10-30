@@ -2,11 +2,6 @@ const Contenedor = require('../../Contenedor');
 
 const cartContenedor = new Contenedor('./data/carrito.json');
 
-const getAllProducts = async () =>{
-    const list = await cartContenedor.getAll();
-    return list
-}
-
 const createCart = async(newCart)=>{
     const idCarritoSaved = await cartContenedor.save(newCart);
     return idCarritoSaved
@@ -20,19 +15,10 @@ const getByIdCart = async (idCart) => {
         return carrito
 }}
 
-const updateProducts = async(idProduct,newData)=>{
-    const productoUpdate = await cartContenedor.update(idProduct,newData)
-        if (!productoUpdate){
-        return 'Producto no encontrado'
-        }else {
-            return productoUpdate
-    }}
- 
 const deleteCart = async (idCarrito) =>{
     const carritoAEleminiar = await cartContenedor.deleteById(idCarrito)
         return({ message : 'Producto Eliminado de Forma Correcta' })
 }
-
 
 const addProductsToCart = async(idCarrito, productosNew)=>{
     const cartNew = cartContenedor.update(idCarrito, productosNew);
@@ -53,10 +39,8 @@ const deleteProductToCart = async(idCarrito, idProducto) => {
 }
 
 module.exports = {
-    getAllProducts,
     createCart,
     getByIdCart,
-    updateProducts,
     deleteCart,
     addProductsToCart,
     deleteProductToCart

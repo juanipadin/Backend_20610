@@ -3,6 +3,7 @@ const express = require('express');
 const productosRouter = express.Router();
 
 const Contenedor = require('../../contenedor');
+const isAdmin = require( '../../middlewares/isAdmin' );
 const { getAllProducts, createProducts, getByIdProducts, updateProducts, deleteProducts } = require( '../models/product' );
 const productosContenedor = new Contenedor('./data/productos.json');
 
@@ -17,7 +18,7 @@ productosRouter.get('/:id', async (req, res) =>{
     res.send({productoSeleccionado})
 })
 
-productosRouter.post('/', async (req, res) =>{
+productosRouter.post('/', isAdmin, async (req, res) =>{
     const newProducto = req.body; 
     const idProductosSaved = await createProducts(newProducto);
     res.send({
@@ -25,14 +26,14 @@ productosRouter.post('/', async (req, res) =>{
         data: { idProductosSaved }})
 })
 
-productosRouter.put('/:id', async (req, res) =>{
+productosRouter.put('/:id', isAdmin, async (req, res) =>{
     const datosNuevos = req.body;
     const idProducto = Number(req.params.id);
     const productoUpdate = await updateProducts(idProducto,datosNuevos);
     res.send({productoUpdate})
 })
 
-productosRouter.delete('/:id', async (req, res) =>{
+productosRouter.delete('/:id', isAdmin, async (req, res) =>{
     idProducto = Number(req.params.id)
     const productoAEliminiar = await deleteProducts(idProducto)
     res.send({productoAEliminiar})
