@@ -39,7 +39,7 @@ carritoRouter.post('/:id/productos', async (req, res) =>{
 
 carritoRouter.delete('/:id/productos/:id_prod', async (req, res) =>{
     idCarrito = Number(req.params.id);
-    idProducto = Number(req.param.id_prod)
+    idProducto = Number(req.params.id_prod)
 
     const productoAEliminiarPorCarrito = await deleteProductToCart(idCarrito,idProducto)
     res.send({productoAEliminiarPorCarrito})

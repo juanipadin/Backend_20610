@@ -1,31 +1,32 @@
 [
   {
-    "nombre": "Juego de PS4",
-    "precio": 15,
-    "id": 1
+    "id": 2,
+    "timestamp": 1635724183491,
+    "nombre": "jugo de tomate",
+    "descripcion": "tomate en lata",
+    "código": "A001",
+    "foto": "www.coto.com.ar/foto_tomate",
+    "precio": 22,
+    "stock": 150
   },
   {
-    "nombre": "Juego de PS4",
-    "precio": 15,
-    "id": 2
+    "nombre": "jugo de tomate",
+    "descripcion": "tomate en lata",
+    "código": "A001",
+    "foto": "www.coto.com.ar/foto_tomate",
+    "precio": 22,
+    "stock": 150,
+    "id": 3,
+    "timestamp": 1635723994466
   },
   {
-    "producto": [
-      {
-        "nombre": "Juego de PS4",
-        "precio": 15
-      }
-    ],
-    "id": 3
-  },
-  {
-    "producto": [
-      {
-        "nombre": "Juego de PS4",
-        "precio": 8188
-      }
-    ],
+    "nombre": "jugo de tomate",
+    "descripcion": "tomate en lata",
+    "código": "A001",
+    "foto": "www.coto.com.ar/foto_tomate",
+    "precio": 22,
+    "stock": 150,
     "id": 4,
-    "timestamp": "1,635,550,349,429"
+    "timestamp": 1635724108689
   }
 ]

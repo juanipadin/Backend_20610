@@ -22,6 +22,7 @@ const deleteCart = async (idCarrito) =>{
 
 const addProductsToCart = async(idCarrito, productosNew)=>{
     const cartNew = cartContenedor.update(idCarrito, productosNew);
+
     return {cartNew}
 }
 

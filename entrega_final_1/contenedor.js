@@ -17,6 +17,7 @@ class Contenedor {
                 //2.1. Si no hay datos, crea id : 1
                 if (contenido === ''){
                     newProduct.id = 1;
+                    newProduct.timestamp = Date.now()
                     productos.push(newProduct);
 
                 } else { //2.2 Si hay un ID, suma al anterior
@@ -60,7 +61,6 @@ class Contenedor {
         try {
             const contenido = await fs.promises.readFile(`./${this.nombreArchivo}`,'utf-8');
             const listaDeProductos = JSON.parse(contenido);
-            //console.log('Todos los productos disponibles: ',listaDeProductos)
             return listaDeProductos;
         }
         catch (error){
@@ -117,11 +117,10 @@ class Contenedor {
                 ...productoSaved, // SE COPIAN TODOS LOS ATRIBUTOS DE PRODUCTOSAVED EN PRODUCTOUPDATE
                 ...producto // SE COPIAN Y PISAN TODOS LOS ATRIBUTOS DE PRODUCTO EN PRODUCTOUPDATE. ESTO PASA PORQUE NO PUEDE HABER DOS DATOS IGUALES EN JSON
             };
-            // SE PONE EL NUEVO ELEMENTO EN LA LISTA
+            productoUpdate.timestamp = Date.now()
+
             list[indexProductoSaved] = productoUpdate
-    
-            console.log(list[indexProductoSaved])
-    
+
             // SE GUARDA LA LISTA
             const elementString = JSON.stringify(list, null, 2)
             await fs.promises.writeFile(`./${this.nombreArchivo}`, elementString);

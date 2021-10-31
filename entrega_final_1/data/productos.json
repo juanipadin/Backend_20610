@@ -1,38 +1,12 @@
 [
   {
-    "nombre": "Casco Moderno",
+    "nombre": "jugo de tomate",
+    "descripcion": "tomate en lata",
+    "código": "A001",
+    "foto": "www.coto.com.ar/foto_tomate",
     "precio": 22,
-    "foto": "https://cdn3.iconfinder.com/data/icons/bicycle-11/64/helmet-bike-sports-competition-bicycle-256.png",
-    "id": 1
-  },
-  {
-    "nombre": "Casco de BMX",
-    "precio": 33,
-    "foto": "https://cdn0.iconfinder.com/data/icons/bicycle-parts-components-and-accessories/1772/Bicycle_Helmet___Bicycle_Bike_Helmet_Equipment_Protect-256.png",
-    "id": 2
-  },
-  {
-    "nombre": "Casco Clásico",
-    "precio": "100",
-    "foto": "https://cdn0.iconfinder.com/data/icons/sports-equipment-colored/512/bike_helmet-256.png",
-    "id": 3
-  },
-  {
-    "nombre": "Rueda Rodado 26",
-    "precio": "200",
-    "foto": "https://cdn3.iconfinder.com/data/icons/bicycle-part/32/Bicycle_part_spoke_wheel-256.png",
-    "id": 4
-  },
-  {
-    "nombre": "Medias de Competencia",
-    "precio": "3",
-    "foto": "https://cdn1.iconfinder.com/data/icons/bicycle-apparel/1772/Craft_Cool_Bike_Socks_Cycling_Socks-256.png",
-    "id": 5
-  },
-  {
-    "nombre": "Kit de Herramientas",
-    "precio": 11,
-    "foto": "https://http2.mlstatic.com/D_NQ_NP_931475-MLA44452660568_122020-V.jpg",
-    "id": 6
+    "stock": 150,
+    "id": 1,
+    "timestamp": 1635723899761
   }
 ]

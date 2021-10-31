@@ -7,12 +7,12 @@ const isAdmin = require( '../../middlewares/isAdmin' );
 const { getAllProducts, createProducts, getByIdProducts, updateProducts, deleteProducts } = require( '../models/product' );
 const productosContenedor = new Contenedor('./data/productos.json');
 
-productosRouter.get('/', async (req, res) =>{
+productosRouter.get('/', isAdmin, async (req, res) =>{
     const listaDeProductos = await getAllProducts();
     res.send({listaDeProductos})
 })
 
-productosRouter.get('/:id', async (req, res) =>{
+productosRouter.get('/:id', isAdmin, async (req, res) =>{
     const idProducto = Number(req.params.id)
     const productoSeleccionado = await getByIdProducts(idProducto)
     res.send({productoSeleccionado})
