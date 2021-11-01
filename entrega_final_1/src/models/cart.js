@@ -30,16 +30,12 @@ const addProductsToCart = async(idCarrito, productosNew)=>{
 
 const deleteProductToCart = async(idCarrito, idProducto) => {
     const resultadoCart = await cartContenedor.getById(idCarrito);
-    const index = Object.values(resultadoCart).filter(cart => cart.id != idProducto);
-    const carritoNew = index[2].filter(cart => cart.id != idProducto)
+    const carritoNew = resultadoCart.productos.filter(cart => cart.id != idProducto)
 
-    index.splice(carritoNew,1);
+    resultadoCart.productos.splice(carritoNew,1);
 
-    console.log(carritoNew)
- 
-    const cartUpdated = await cartContenedor.update(idCarrito,carritoNew) 
-    return cartUpdated 
-
+    const cartUpdated = await cartContenedor.update(idCarrito,resultadoCart) 
+    return cartUpdated
 }
 
 module.exports = {
