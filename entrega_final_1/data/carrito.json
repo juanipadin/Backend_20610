@@ -4,15 +4,23 @@
     "timestamp": "1,635,734,772,960",
     "productos": [
       {
-        "id": 33,
+        "id": 11,
         "nombre": "Tomate",
         "descripcion": "Rojo y Redondo",
         "código": "A001",
         "foto": "www.supermercados.com.ar/foto_tomate",
         "precio": 22,
         "stock": 150
-      }
-    ],
-    "timelapse": "1,635,734,772,935"
+      },
+        {
+          "id": 22,
+          "nombre": "Lechuga",
+          "descripcion": "Verde y Mantecosa",
+          "código": "B002",
+          "foto": "www.supermercados.com.ar/foto_lechuga",
+          "precio": 33,
+          "stock": 15
+        }
+    ]
   }
 ]

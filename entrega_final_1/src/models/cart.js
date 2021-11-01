@@ -35,14 +35,8 @@ const deleteProductToCart = async(idCarrito, idProducto) => {
 
     index.splice(lista,1);
     const cartUpdated = await cartContenedor.update(idCarrito,index)
+    return cartUpdated
 
-/*     console.log(index)
-    const newCart = {
-        ...index,
-        lista
-    }
-    const cartUpdated = await cartContenedor.update(idCarrito,newCart); 
-    return cartUpdated*/
 }
 
 module.exports = {
