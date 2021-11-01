@@ -18,14 +18,15 @@ const getByIdCart = async (idCart) => {
 const deleteCart = async (idCarrito) =>{
     const carritoAEleminiar = await cartContenedor.deleteById(idCarrito)
     
-    return({ message : 'Producto Eliminado de Forma Correcta' })
+    return  'Producto Eliminado de Forma Correcta'
 }
 
 const addProductsToCart = async(idCarrito, productosNew)=>{
-    productosNew.timestamp = Date.now().toLocaleString()
-    const cartNew = cartContenedor.update(idCarrito, productosNew);
+    productosNew.productos.timestamp = Date.now().toLocaleString()
 
-    return {cartNew}
+    cartContenedor.update(idCarrito, productosNew);
+
+    return 'El producto se agregó de forma correcta'
 }
 
 const deleteProductToCart = async(idCarrito, idProducto) => {
