@@ -31,7 +31,6 @@ class Contenedor {
                 // 3. Guarda el producto en el JSON
                 const productoString = JSON.stringify(productos, null, 2)
                 await fs.promises.writeFile(`./${this.nombreArchivo}`, productoString);
-                console.log('Se guardó de forma correcta el producto')
 
                 // 4. Regresa ID
                 return newProduct.id
@@ -77,7 +76,7 @@ class Contenedor {
             if (!resultadoId){
                 return null
             } else{
-                const index = listaDeProductos.indexOf(resultadoId);
+                const index = listaDeProductos.filter(resultadoId => resultadoId.id != numero);
                 listaDeProductos.splice(index, 1);
                 const listaNew = JSON.stringify(listaDeProductos)
     
@@ -114,14 +113,12 @@ class Contenedor {
             }
     
             const productoUpdate = {
-                ...productoSaved, // SE COPIAN TODOS LOS ATRIBUTOS DE PRODUCTOSAVED EN PRODUCTOUPDATE
-                ...producto // SE COPIAN Y PISAN TODOS LOS ATRIBUTOS DE PRODUCTO EN PRODUCTOUPDATE. ESTO PASA PORQUE NO PUEDE HABER DOS DATOS IGUALES EN JSON
-            };
-            productoUpdate.timestamp = Date.now()
+                ...productoSaved, 
+                ...producto
+            };  
 
             list[indexProductoSaved] = productoUpdate
 
-            // SE GUARDA LA LISTA
             const elementString = JSON.stringify(list, null, 2)
             await fs.promises.writeFile(`./${this.nombreArchivo}`, elementString);
     

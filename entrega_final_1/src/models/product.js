@@ -8,7 +8,9 @@ const getAllProducts = async () =>{
 }
 
 const createProducts = async(newProducto)=>{
+    newProducto.timestamp = Date.now().toLocaleString()
     const idProductosSaved = await productosContenedor.save(newProducto);
+    
     return idProductosSaved
     }
 

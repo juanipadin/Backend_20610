@@ -1,32 +1,18 @@
 [
   {
-    "id": 2,
-    "timestamp": 1635724183491,
-    "nombre": "jugo de tomate",
-    "descripcion": "tomate en lata",
-    "código": "A001",
-    "foto": "www.coto.com.ar/foto_tomate",
-    "precio": 22,
-    "stock": 150
-  },
-  {
-    "nombre": "jugo de tomate",
-    "descripcion": "tomate en lata",
-    "código": "A001",
-    "foto": "www.coto.com.ar/foto_tomate",
-    "precio": 22,
-    "stock": 150,
-    "id": 3,
-    "timestamp": 1635723994466
-  },
-  {
-    "nombre": "jugo de tomate",
-    "descripcion": "tomate en lata",
-    "código": "A001",
-    "foto": "www.coto.com.ar/foto_tomate",
-    "precio": 22,
-    "stock": 150,
-    "id": 4,
-    "timestamp": 1635724108689
+    "id": 1,
+    "timestamp": "1,635,734,772,960",
+    "productos": [
+      {
+        "id": 33,
+        "nombre": "Tomate",
+        "descripcion": "Rojo y Redondo",
+        "código": "A001",
+        "foto": "www.supermercados.com.ar/foto_tomate",
+        "precio": 22,
+        "stock": 150
+      }
+    ],
+    "timelapse": "1,635,734,772,935"
   }
 ]

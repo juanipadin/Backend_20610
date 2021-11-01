@@ -8,5 +8,23 @@
     "stock": 150,
     "id": 1,
     "timestamp": 1635723899761
+  },
+  {
+    "nombre": "hola",
+    "id": 2
+  },
+  {
+    "nombre": "hola",
+    "id": 3
+  },
+  {
+    "nombre": "hola",
+    "timestamp": 1635733616964,
+    "id": 4
+  },
+  {
+    "nombre": "hola",
+    "timestamp": 1635733642282,
+    "id": 5
   }
 ]
