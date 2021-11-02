@@ -111,13 +111,13 @@ class Contenedor {
                 console.log(`Error con el Id: ${id} no fue encontrado`)
                 return null
             }
-            
+
             const productoUpdate = {
                 ...productoSaved, 
                 ...producto
             };
             list[indexProductoSaved] = productoUpdate
-            console.log(list)
+
             const elementString = JSON.stringify(list, null, 2)
             await fs.promises.writeFile(`./${this.nombreArchivo}`, elementString);
     

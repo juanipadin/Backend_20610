@@ -24,7 +24,7 @@ const deleteCart = async (idCarrito) =>{
 const addProductsToCart = async(idCarrito, productosNew)=>{
     const listNew = Object.entries(productosNew)
     const timestamp = Date.now().toLocaleString()
-    listNew.push(timestamp)
+    listNew.push({"timestamp" : timestamp})
 
     cartContenedor.update(idCarrito, listNew);
 
