@@ -117,9 +117,7 @@ class Contenedor {
                 ...producto
             };
             list[indexProductoSaved] = productoUpdate
-            
             console.log(list)
-
             const elementString = JSON.stringify(list, null, 2)
             await fs.promises.writeFile(`./${this.nombreArchivo}`, elementString);
     

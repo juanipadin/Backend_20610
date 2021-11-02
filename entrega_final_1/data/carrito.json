@@ -1,17 +1,7 @@
 [
   {
     "id": 1,
-    "timestamp": "1,635,734,772,960",
-    "productos": [
-      {
-        "id": 444,
-        "nombre": "Naranja",
-        "descripcion": "Naranja",
-        "código": "A003",
-        "foto": "www.supermercados.com.ar/foto_naranja",
-        "precio": 99,
-        "stock": 150
-      }
-    ]
+    "timestamp": "1,635,811,619,413",
+    "productos": []
   }
 ]

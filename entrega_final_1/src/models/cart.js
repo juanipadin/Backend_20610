@@ -22,9 +22,11 @@ const deleteCart = async (idCarrito) =>{
 }
 
 const addProductsToCart = async(idCarrito, productosNew)=>{
-    productosNew.productos.timestamp = Date.now().toLocaleString()
+    const listNew = Object.entries(productosNew)
+    const timestamp = Date.now().toLocaleString()
+    listNew.push(timestamp)
 
-    cartContenedor.update(idCarrito, productosNew);
+    cartContenedor.update(idCarrito, listNew);
 
     return 'El producto se agregó de forma correcta'
 }
