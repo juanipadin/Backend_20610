@@ -77,8 +77,7 @@ class Contenedor {
                 return null
             } else{
                 const index = listaDeProductos.filter(resultadoId => resultadoId.id != numero);
-                listaDeProductos.splice(index, 1);
-                const listaNew = JSON.stringify(listaDeProductos)
+                const listaNew = JSON.stringify(index)
     
                 await fs.promises.writeFile(`./${this.nombreArchivo}`,listaNew);
                 console.log('El producto seleccionado se eliminó de forma correcta')
