@@ -17,7 +17,7 @@ server.use('/api/carrito', carritoRouter)
 
 server.use(function(req, res, next) {
     res.status(404)
-    .send({error : `-2, descripcion: ruta ${req.path} método ${req.method} no implementada`});
+    .send({error : "-2", descripcion : `ruta ${req.path} método ${req.method} no implementada`});
 });
 
 server.listen(PORT, () => console.log(`Servidor corriendo en ${PORT}`));

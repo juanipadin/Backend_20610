@@ -1,6 +1,7 @@
 const Contenedor = require('../../Contenedor');
 
 const cartContenedor = new Contenedor('./data/carrito.json');
+const productoContenedor = new Contenedor('./data/productos.json')
 
 const createCart = async(newCart)=>{
     const idCarritoSaved = await cartContenedor.save(newCart);
@@ -22,13 +23,20 @@ const deleteCart = async (idCarrito) =>{
 }
 
 const addProductsToCart = async(idCarrito, productosNew)=>{
-    const listNew = Object.entries(productosNew)
-    const timestamp = Date.now().toLocaleString()
-    listNew.push({"timestamp" : timestamp})
+    const resultadoCart = await cartContenedor.getById(idCarrito); // SELECCIONA EL CARRITO EN DONDE SE AGREGARÁN LOS PRODUCTOS
 
-    cartContenedor.update(idCarrito, listNew);
+    const listadoDeIds = productosNew.productos.map((element) =>(element.id)) // CREA UN ARRAY CON LOS IDs A AGREGAR
+    
+    let listadoDeProductos = [] //CREA UN ARRAY VACIO PARA INGRESAR LOS DATOS DE LOS PRODUCTOS
 
-    return 'El producto se agregó de forma correcta'
+    for (const i of listadoDeIds) { // SE AGREGA EN EL ARRAY DE listadoDeProductos, LOS DATOS DE LOS PRODUCTOS A AGREGAR POR CADA ID
+        datosDelProductoAIngresar = await productoContenedor.getById(i); 
+        listadoDeProductos.push(datosDelProductoAIngresar)
+    }
+
+    resultadoCart.productos.push(listadoDeProductos) // ABREGA AL CARRITO LOS PRODUCTOS
+    cartContenedor.update(idCarrito, resultadoCart);
+    return 'El producto se agregó de forma correcta' 
 }
 
 const deleteProductToCart = async(idCarrito, idProducto) => {

@@ -3,10 +3,20 @@
     "nombre": "jugo de tomate",
     "descripcion": "tomate en lata",
     "código": "A001",
-    "foto": "www.coto.com.ar/foto_tomate",
-    "precio": 22,
+    "foto": "www.supermercado.com.ar/foto_tomate",
+    "precio": 11,
     "stock": 150,
     "id": 1,
     "timestamp": 1635723899761
+  },
+  {
+    "nombre": "Lechuga",
+    "descripcion": "Verde y Criolla",
+    "código": "B048",
+    "foto": "www.supermercado.com.ar/foto_lechuga",
+    "precio": 22,
+    "stock": 66,
+    "id": 2,
+    "timestamp": 1635811619413
   }
 ]
