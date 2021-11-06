@@ -1,6 +1,6 @@
 const ADMIN = true;
 
-const isAdmin = (res, req, next) => {
+const isAdmin = (req, res, next) => {
     if (ADMIN){
         next();
     } else {

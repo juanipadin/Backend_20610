@@ -1,22 +1,22 @@
 [
   {
-    "nombre": "jugo de tomate",
-    "descripcion": "tomate en lata",
-    "código": "A001",
-    "foto": "www.supermercado.com.ar/foto_tomate",
-    "precio": 11,
-    "stock": 150,
-    "id": 1,
-    "timestamp": 1635723899761
-  },
-  {
     "nombre": "Lechuga",
     "descripcion": "Verde y Criolla",
     "código": "B048",
     "foto": "www.supermercado.com.ar/foto_lechuga",
     "precio": 22,
     "stock": 66,
+    "id": 1,
+    "timestamp": "6/11/2021 12:29:58"
+  },
+  {
+    "nombre": "Jugo de Tomate",
+    "descripcion": "Tomate en Lata",
+    "código": "A001",
+    "foto": "www.supermercado.com.ar/foto_tomate",
+    "precio": 11,
+    "stock": 150,
     "id": 2,
-    "timestamp": 1635811619413
+    "timestamp": "6/11/2021 12:30:15"
   }
 ]

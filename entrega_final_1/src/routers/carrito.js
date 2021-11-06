@@ -8,10 +8,9 @@ const productosContenedor = new Contenedor('./data/productos.json');
 
 
 carritoRouter.post('/', async (req, res) =>{
-    const cart = req.body; 
-
+    let cart = req.body;
     const idCartSaved = await createCart(cart);
-    res.send(`Se registró con éxito el producto bajo el Id: ${idCartSaved}`)
+    res.send(`Se registró con éxito el carrito bajo el Id: ${idCartSaved}`)
     })
 
     

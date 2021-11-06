@@ -17,13 +17,13 @@ class Contenedor {
                 //2.1. Si no hay datos, crea id : 1
                 if (contenido === ''){
                     newProduct.id = 1;
-                    newProduct.timestamp = Date.now()
+                    newProduct.timestamp = new Date().toLocaleString()
                     productos.push(newProduct);
 
                 } else { //2.2 Si hay un ID, suma al anterior
                     const listaDeProductos = JSON.parse(contenido);
                     newProduct.id = listaDeProductos[listaDeProductos.length -1].id + 1;
-                    newProduct.timestamp = Date.now()
+                    newProduct.timestamp = new Date().toLocaleString()
                     listaDeProductos.push(newProduct);
                     productos = listaDeProductos
                 }

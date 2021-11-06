@@ -4,6 +4,7 @@ const cartContenedor = new Contenedor('./data/carrito.json');
 const productoContenedor = new Contenedor('./data/productos.json')
 
 const createCart = async(newCart)=>{
+    newCart.productos = []
     const idCarritoSaved = await cartContenedor.save(newCart);
     return idCarritoSaved
     }
