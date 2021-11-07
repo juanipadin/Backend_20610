@@ -2,10 +2,11 @@ const express = require('express');
 const { Server : SocketServer } = require('socket.io');
 const { Server : HttpServer} = require('http');
 const { connected } = require( 'process' );
+const { optionsMYSQL } = require( './options/databases' )
 
 /* CARGA DE PRODUCTOS */
 const Contenedor = require('./models/contenedor');
-const productosContenedor = new Contenedor('/data/productos.json')
+const productosContenedor = new Contenedor(optionsMYSQL,'products')
 
 /* CARGA DE CHAT */
 const Mensajes = require( './models/messages.js' );
@@ -66,7 +67,11 @@ app.get('/list-productos', async (req, res) =>{
     const productos = await productosContenedor.getAll()
     res.render('pages/vista_producto',{
         productos : productos,
-    })
+    })})
+    
+app.delete('/producto/', async (req, res) =>{
+    const data = await productosContenedor.deleteAll()
+    res.send ({data})
 })
 
 /* REALIZA LA CONECCIÓN Y VERIFICA ERRORES */

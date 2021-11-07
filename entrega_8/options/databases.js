@@ -1,4 +1,4 @@
-const options = {
+const optionsMYSQL = {
     client: 'mysql',
     connection: {
         host: 'localhost',
@@ -9,6 +9,13 @@ const options = {
     pool: { min: 0, max: 7 }
 }
 
+const optionsSQLite = {
+    client: 'sqlite3',
+    connection: { filename: '../db/ecommerce.sqlite' },
+    useNullAsDefault : true
+}
+
 module.exports = {
-    options
+    optionsMYSQL,
+    optionsSQLite
 }
