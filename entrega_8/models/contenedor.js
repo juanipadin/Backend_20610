@@ -31,8 +31,9 @@ class Contenedor {
 
     async getAll(){
         try {
-            const listaDeProductos = await this.conexion.from(this.table).select('*')
-            return listaDeProductos;
+            const listado = await this.conexion.from(this.table)
+            .select('*')
+            return listado;
         } catch (error) {console.error(error); throw error;}
     }
 

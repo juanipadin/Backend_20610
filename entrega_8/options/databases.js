@@ -11,7 +11,7 @@ const optionsMYSQL = {
 
 const optionsSQLite = {
     client: 'sqlite3',
-    connection: { filename: '../db/ecommerce.sqlite' },
+    connection: { filename: '../DB/ecommerce.sqlite' },
     useNullAsDefault : true
 }
 

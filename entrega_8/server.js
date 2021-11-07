@@ -2,23 +2,16 @@ const express = require('express');
 const { Server : SocketServer } = require('socket.io');
 const { Server : HttpServer} = require('http');
 const { connected } = require( 'process' );
-const { optionsMYSQL } = require( './options/databases' )
+const { optionsMYSQL } = require( './options/databases' );
+const { getMessages, saveMessages} = require('./models/messages')
 
 /* CARGA DE PRODUCTOS */
 const Contenedor = require('./models/contenedor');
 const productosContenedor = new Contenedor(optionsMYSQL,'products')
 
-/* CARGA DE CHAT */
-const Mensajes = require( './models/messages.js' );
-const mensajes = new Mensajes('/data/messages.json')
-
 const app = express();
 const httpServer = new HttpServer(app);
 const io = new SocketServer(httpServer);
-
-/* HABILITA EL USO DEL JSON */
-app.use(express.json());
-app.use(express.urlencoded({extended: true}))
 
 /* CREA RELACIÓN A CARPETA 'PUBLIC' */
 app.use( express.static('public') );
@@ -36,15 +29,13 @@ io.on('connection', async (socket) => {
         const productos = await productosContenedor.getAll()
         io.sockets.emit('productos', productos) 
     })
-
     /* CARGA EL CHAT */
-    const messages = await mensajes.getMessagess();
+    const messages = await getMessages();
     socket.emit('messages', messages);
 
-    socket.on('new-message', async data => {
+    socket.on('new-message', async (data) => {
         data.fechaHora = new Date().toLocaleString();
-        await mensajes.saveMessages(data);
-/*         const messages = await mensajes.getMessages(); */
+        await saveMessages(data);
         io.sockets.emit('messages', messages);
     }) 
 })
@@ -69,12 +60,8 @@ app.get('/list-productos', async (req, res) =>{
         productos : productos,
     })})
     
-app.delete('/producto/', async (req, res) =>{
-    const data = await productosContenedor.deleteAll()
-    res.send ({data})
-})
 
-/* REALIZA LA CONECCIÓN Y VERIFICA ERRORES */
+    /* REALIZA LA CONECCIÓN Y VERIFICA ERRORES */
 const PORT = 8080;
 const connectedServer = httpServer.listen(PORT, () => {
     console.log(`Servidor en Http con Websocket escuchando en el puerto ${connectedServer.address().port}`)
