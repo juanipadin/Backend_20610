@@ -3,7 +3,7 @@ const optionsMYSQL = {
     connection: {
         host: 'localhost',
         user: 'root',
-        password: 'martelli',
+        password: '*',
         database: 'ecommerce'
     },
     pool: { min: 0, max: 7 }
