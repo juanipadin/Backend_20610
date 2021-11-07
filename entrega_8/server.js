@@ -33,7 +33,7 @@ io.on('connection', async (socket) => {
     const messages = await getMessages();
     socket.emit('messages', messages);
 
-    socket.on('new-message', async (data) => {
+    socket.on('new-message', async data => {
         data.fechaHora = new Date().toLocaleString();
         await saveMessages(data);
         io.sockets.emit('messages', messages);
