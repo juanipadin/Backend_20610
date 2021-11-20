@@ -1,24 +1,38 @@
 const express = require('express');
-
 const productosRouter = express.Router();
 
+/* const { productDao } = require('../daos'); 
+const productDao = new ProductDao();*/
+
+
 const isAdmin = require( '../../middlewares/isAdmin' );
-const { getAllProducts, createProducts, getByIdProducts, updateProducts, deleteProducts } = require( '../daos/productos/ProductosDaoArchivos' );
+
+const ProductosDaoMongo = require( '../daos/productos/ProductosDaoMongo' );
+const ProductosDaoArchivos = require( '../daos/productos/ProductosDaoArchivos' );
+
+const productoDaoMongo = new ProductosDaoMongo();
+const productoDaoArchivo = new ProductosDaoArchivos()
 
 productosRouter.get('/', async (req, res) =>{
-    const listaDeProductos = await getAllProducts();
-    res.send({listaDeProductos})
+    console.log(productDao)
+    const data = await productDao.getAll();
+    //const data = await productoDaoArchivo.getAllProducts();
+    //const data = await productoDaoMongo.getAll()
+    
+    res.send({data})
 })
 
 productosRouter.get('/:id', async (req, res) =>{
-    const idProducto = Number(req.params.id)
-    const productoSeleccionado = await getByIdProducts(idProducto)
-    res.send({productoSeleccionado})
+    const idProducto = req.params.id
+    const data = await productoDaoArchivo.getByIdProducts(idProducto)
+    //const data = await productoDaoMongo.getById(idProducto)
+    res.send({data})
 })
 
 productosRouter.post('/', isAdmin, async (req, res) =>{
     const newProducto = req.body; 
-    const idProductosSaved = await createProducts(newProducto);
+    const idProductosSaved = await productoDaoArchivo.createProducts(newProducto)
+    //const idProductosSaved = await productoDaoMongo.save(newProducto)
     res.send({
         message : 'Se registró con éxito el producto',
         data: { idProductosSaved }})
@@ -26,15 +40,17 @@ productosRouter.post('/', isAdmin, async (req, res) =>{
 
 productosRouter.put('/:id', isAdmin, async (req, res) =>{
     const datosNuevos = req.body;
-    const idProducto = Number(req.params.id);
-    const productoUpdate = await updateProducts(idProducto,datosNuevos);
-    res.send({productoUpdate})
+    const idProducto = req.params.id;
+    const data = await productoDaoArchivo.updateProducts(idProducto,datosNuevos)
+    //const data = await productoDaoMongo.update(idProducto,datosNuevos);
+    res.send({data})
 })
 
 productosRouter.delete('/:id', isAdmin, async (req, res) =>{
-    idProducto = Number(req.params.id)
-    const productoAEliminiar = await deleteProducts(idProducto)
-    res.send({productoAEliminiar})
+    idProducto = req.params.id
+    const data = await productoDaoArchivo.deleteProductById(idProducto)
+    //const data = await productoDaoMongo.deleteById(idProducto)
+    res.send({data})
 })
 
 module.exports = productosRouter;

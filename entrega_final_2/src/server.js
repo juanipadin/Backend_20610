@@ -1,4 +1,4 @@
-const express = require('express');
+const express = require('express')
 const { appendFile } = require( 'fs' );
 const carritoRouter = require( '../src/routers/carrito' );
 const productosRouter = require( '../src/routers/productos')

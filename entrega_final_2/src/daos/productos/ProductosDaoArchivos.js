@@ -1,48 +1,48 @@
-const Contenedor = require('../ContenedorArchivo');
+const ContenedorArchivo = require('../../contenedores/ContenedorArchivo');
 
-const productosContenedor = new Contenedor('./data/productos.json');
-
-const getAllProducts = async () =>{
-    const list = await productosContenedor.getAll();
-    return list
-}
-
-const createProducts = async(newProducto)=>{
-    const idProductosSaved = await productosContenedor.save(newProducto);
-
-    return idProductosSaved
+class ProductosDaoArchivos extends ContenedorArchivo{
+    constructor(){
+        super('./data/productos.json')
     }
 
-const getByIdProducts = async (idProduct) => {
-    const producto = await productosContenedor.getById(idProduct);
-            if (!producto){
-        return "Error, producto no encontrado"
-    }else{
-        return producto
-}}
+    async getAllProducts(){
+        const list = await super.getAll();
+        return list
+    }
 
-const updateProducts = async(idProduct,newData)=>{
-    const productoUpdate = await productosContenedor.update(idProduct,newData)
-        if (!productoUpdate){
-        return 'Producto no encontrado'
-        }else {
-            return productoUpdate
+    async createProducts(newProducto) {
+        const idProductosSaved = await super.save(newProducto);
+
+        return idProductosSaved
+        }
+
+    async getByIdProducts(idProduct) {
+        const idToNumber = Number(idProduct)
+        const producto = await super.getById(idToNumber);
+                if (!producto){
+            return "Error, producto no encontrado"
+        }else{
+            return producto
     }}
 
-const deleteProducts = async (idProducto) =>{
-    const productoAEliminiar = await productosContenedor.getById(idProducto)
-    if (productoAEliminiar === null ){
-        return ({ error : 'Producto no Encontrado' })
-    }else {
-        await productosContenedor.deleteById(idProducto);
-        return({ message : 'Producto Eliminado de Forma Correcta' })
-    }
-}
+    async updateProducts(idProduct,newData) {
+        const idToNumber = Number(idProduct)
+        const productoUpdate = await super.update(idToNumber,newData)
+            if (!productoUpdate){
+            return 'Producto no encontrado'
+            }else {
+                return productoUpdate
+        }}
 
-module.exports = {
-    getAllProducts,
-    createProducts,
-    getByIdProducts,
-    updateProducts,
-    deleteProducts
-}
+    async deleteProductById(idProducto){
+        const idToNumber = Number(idProduct)
+        const productoAEliminiar = await super.getById(idToNumber)
+        if (productoAEliminiar === null ){
+            return ({ error : 'Producto no Encontrado' })
+        }else {
+            await super.deleteById(idProducto);
+            return({ message : 'Producto Eliminado de Forma Correcta' })
+        }
+}}
+
+module.exports = ProductosDaoArchivos
