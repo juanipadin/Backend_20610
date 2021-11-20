@@ -11,7 +11,7 @@ const ProductosDaoMongo = require( '../daos/productos/ProductosDaoMongo' );
 const ProductosDaoArchivos = require( '../daos/productos/ProductosDaoArchivos' );
 
 const productoDaoMongo = new ProductosDaoMongo();
-const productoDaoArchivo = new ProductosDaoArchivos()
+const productoDaoArchivo = new ProductosDaoArchivos();
 
 productosRouter.get('/', async (req, res) =>{
     console.log(productDao)
