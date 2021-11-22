@@ -99,10 +99,4 @@ class ContenedorFirestore {
     }
 }
 
-module.exports=ContenedorFirestore
-
-//contenedorFirestore = new ContenedorFirestore('products')
-//contenedorFirestore.update('m5HzFZ9OLGZ2Hx72qZhi', {hola:"hola"})
-//contenedorFirestore.save({"name": "juegos"})
-//contenedorFirestore.deleteAll()
-//contenedorFirestore.getAll()
+module.exports = ContenedorFirestore

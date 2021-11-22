@@ -45,8 +45,4 @@ class ProductosDaoMemoria extends ContenedorMemoria{
         }
 }}
 
-const productos = new ProductosDaoMemoria
-productos.save("holaaaa")
-
-
 module.exports = ProductosDaoMemoria
