@@ -1,30 +1,27 @@
-const Contenedor = require('../../contenedores/ContenedorArchivo');
+const ContenedorMemoria = require( '../../contenedores/ContenedorMemoria' );
 
-const cartContenedor = new Contenedor('./data/carrito.json');
-const productoContenedor = new Contenedor('./data/productos.json')
-
-const createCart = async(newCart)=>{
-    newCart.productos = []
-    const idCarritoSaved = await cartContenedor.save(newCart);
-    return idCarritoSaved
+class CarritoDaoMemoria extends ContenedorMemoria{
+    constructor(){
+        super([])
     }
-
-const getByIdCart = async (idCart) => {
-    const carrito = await cartContenedor.getById(idCart);
-    if (!carrito){
-        return "Error, producto no encontrado"
-    }else{
-        return carrito
-}}
-
-const deleteCart = async (idCarrito) =>{
-    const carritoAEleminiar = await cartContenedor.deleteById(idCarrito)
-    
-    return  'Producto Eliminado de Forma Correcta'
+    async createCart(newCart){
+        newCart.productos = []
+        const idCarritoSaved = await super.save(newCart);
+        return idCarritoSaved
+        }
+    async getByIdCart(idCart){
+        const carrito = await super.getById(idCart);
+        if (!carrito){
+            return "Error, no encontrado"
+        }else{
+            return carrito
+    }}
+    async deleteCart(idCarrito){
+    const carritoAEleminiar = await super.deleteById(idCarrito)
+    return  'Eliminado de Forma Correcta'
 }
-
-const addProductsToCart = async(idCarrito, productosNew)=>{
-    const resultadoCart = await cartContenedor.getById(idCarrito); // SELECCIONA EL CARRITO EN DONDE SE AGREGARÁN LOS PRODUCTOS
+    async addProductsToCart(idCarrito, productosNew){
+    const resultadoCart = await super.getById(idCarrito); // SELECCIONA EL CARRITO EN DONDE SE AGREGARÁN LOS PRODUCTOS
 
     const listadoDeIds = productosNew.productos.map((element) =>(element.id)) // CREA UN ARRAY CON LOS IDs A AGREGAR
     
@@ -36,24 +33,19 @@ const addProductsToCart = async(idCarrito, productosNew)=>{
     }
 
     resultadoCart.productos.push(listadoDeProductos) // ABREGA AL CARRITO LOS PRODUCTOS
-    cartContenedor.update(idCarrito, resultadoCart);
-    return 'El producto se agregó de forma correcta' 
+    super.update(idCarrito, resultadoCart);
+    return 'Se agregó de forma correcta' 
 }
 
-const deleteProductToCart = async(idCarrito, idProducto) => {
-    const resultadoCart = await cartContenedor.getById(idCarrito);
-    const carritoNew = resultadoCart.productos.filter(cart => cart.id != idProducto)
+    async deleteProductToCart(idCarrito, idProducto){
+        const resultadoCart = await super.getById(idCarrito);
+        const carritoNew = resultadoCart.productos.filter(cart => cart.id != idProducto)
 
-    resultadoCart.productos.splice(carritoNew,1);
+        resultadoCart.productos.splice(carritoNew,1);
 
-    const cartUpdated = await cartContenedor.update(idCarrito,resultadoCart) 
-    return cartUpdated
+        const cartUpdated = await super.update(idCarrito,resultadoCart) 
+        return cartUpdated
+}
 }
 
-module.exports = {
-    createCart,
-    getByIdCart,
-    deleteCart,
-    addProductsToCart,
-    deleteProductToCart
-}
+module.exports = CarritoDaoMemoria

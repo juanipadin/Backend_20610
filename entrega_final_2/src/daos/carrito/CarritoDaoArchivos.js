@@ -9,6 +9,7 @@ class CarritoDaoArchivos extends ContenedorArchivo{
         const idCarritoSaved = await super.save(newCart);
         return idCarritoSaved
         }
+
     async getByIdCart(idCart){
         const carrito = await super.getById(idCart);
         if (!carrito){
@@ -16,12 +17,14 @@ class CarritoDaoArchivos extends ContenedorArchivo{
         }else{
             return carrito
     }}
+
     async deleteCart(idCarrito){
     const carritoAEleminiar = await super.deleteById(idCarrito)
     return  'Eliminado de Forma Correcta'
-}
+    }
+    
     async addProductsToCart(idCarrito, productosNew){
-    const resultadoCart = await super.getById(idCarrito); // SELECCIONA EL CARRITO EN DONDE SE AGREGARÁN LOS PRODUCTOS
+    const resultadoCart = await super.getById(Number(idCarrito)); // SELECCIONA EL CARRITO EN DONDE SE AGREGARÁN LOS PRODUCTOS
 
     const listadoDeIds = productosNew.productos.map((element) =>(element.id)) // CREA UN ARRAY CON LOS IDs A AGREGAR
     
@@ -38,8 +41,8 @@ class CarritoDaoArchivos extends ContenedorArchivo{
 }
 
     async deleteProductToCart(idCarrito, idProducto){
-        const resultadoCart = await super.getById(idCarrito);
-        const carritoNew = resultadoCart.productos.filter(cart => cart.id != idProducto)
+        const resultadoCart = await super.getById(Number(idCarrito));
+        const carritoNew = resultadoCart.productos.filter(cart => cart.id != Number(idProducto))
 
         resultadoCart.productos.splice(carritoNew,1);
 

@@ -5,18 +5,18 @@ class ProductosDaoArchivos extends ContenedorArchivo{
         super('./data/productos.json')
     }
 
-    async getAllProducts(){
+    async getAll(){
         const list = await super.getAll();
         return list
     }
 
-    async createProducts(newProducto) {
+    async save(newProducto) {
         const idProductosSaved = await super.save(newProducto);
 
         return idProductosSaved
         }
 
-    async getByIdProducts(idProduct) {
+    async getById(idProduct) {
         const idToNumber = Number(idProduct)
         const producto = await super.getById(idToNumber);
                 if (!producto){
@@ -25,7 +25,7 @@ class ProductosDaoArchivos extends ContenedorArchivo{
             return producto
     }}
 
-    async updateProducts(idProduct,newData) {
+    async update(idProduct,newData) {
         const idToNumber = Number(idProduct)
         const productoUpdate = await super.update(idToNumber,newData)
             if (!productoUpdate){
@@ -34,7 +34,7 @@ class ProductosDaoArchivos extends ContenedorArchivo{
                 return productoUpdate
         }}
 
-    async deleteProductById(idProducto){
+    async deleteById(idProducto){
         const idToNumber = Number(idProduct)
         const productoAEliminiar = await super.getById(idToNumber)
         if (productoAEliminiar === null ){

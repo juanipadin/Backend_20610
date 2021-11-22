@@ -60,8 +60,7 @@ class ContenedorMongo {
         try {
             await this.collection.deleteMany({});
             console.log('deleted all')
-        }
-        catch (error){
+        } catch (error){
             console.error('Error de lectura',error)
         }
     }

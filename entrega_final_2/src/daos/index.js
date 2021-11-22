@@ -1,7 +1,7 @@
-const ProductDaoMemory = require('./productos/ProductosDaoMemoria');
-const ProductDaoFirestore = require('./productos/ProductosDaoFirestore');
 const ProductosDaoArchivos = require('./productos/ProductosDaoArchivos');
 const ProductosDaoMongo = require( './productos/ProductosDaoMongo' );
+const ProductosDaoMemoria = require( './productos/ProductosDaoMemoria' );
+const ProductosDaoFirestore = require( './productos/ProductosDaoFirestore' );
 
 const daos = {}
 
@@ -10,11 +10,11 @@ if (process.env.storage === 'mongodb') {
 }
 
 if (process.env.storage === 'memory') {
-    daos['productDao'] = ProductDaoMemory;
+    daos['productDao'] = ProductosDaoMemoria;
 }
 
 if (process.env.storage === 'firestore') {
-    daos['productDao'] = ProductDaoFirestore; 
+    daos['productDao'] = ProductosDaoFirestore; 
 }
 
 if (process.env.storage === 'file') {
