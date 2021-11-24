@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const ProductosDaoArchivos = require('./productos/ProductosDaoArchivos');
 const ProductosDaoMongo = require( './productos/ProductosDaoMongo' );
 const ProductosDaoMemoria = require( './productos/ProductosDaoMemoria' );
