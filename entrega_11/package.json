@@ -1,0 +1,23 @@
+{
+  "name": "entrega_11",
+  "version": "1.0.0",
+  "description": "Desafio 11 Coderhouse",
+  "main": "server.js",
+  "dependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "faker": "^5.5.3",
+    "knex": "^0.95.13",
+    "mysql": "^2.18.1",
+    "normalizr": "^3.6.1",
+    "socket.io": "^4.3.1",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "nodemon server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan I. Padin",
+  "license": "ISC"
+}

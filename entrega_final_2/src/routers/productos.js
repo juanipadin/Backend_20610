@@ -1,7 +1,7 @@
 const express = require('express');
 const productosRouter = express.Router();
 
-const { productDao } = require('../daos'); 
+const { ProductDao } = require('../daos'); 
 const productDao = new ProductDao();
 
 
