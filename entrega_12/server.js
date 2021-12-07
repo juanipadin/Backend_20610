@@ -9,14 +9,17 @@ const productosContenedor = new Contenedor('/data/productos.json')
 
 /* CARGA DE CHAT */
 const Mensajes = require( './models/messages.js' );
-const session = require( 'express-session' );
 const mensajes = new Mensajes('/data/messages.json')
 
 const app = express();
 const httpServer = new HttpServer(app);
 const io = new SocketServer(httpServer);
 
-const authWebRouter = require('./public/auth')
+/* CARGA DE SESION */
+const session = require( 'express-session' );
+const authWebRouter = require('./routers/web/auth')
+const productosWebRouter = require('./routers/web/home')
+
 
 /* HABILITA EL USO DEL JSON */
 app.use(express.json());
@@ -38,6 +41,7 @@ app.use( express.static('public') );
 app.set('view engine', 'ejs');
 
 app.use(authWebRouter)
+app.use(productosWebRouter)
 
 /* CREA EL WEBSOCKET */
 io.on('connection', async (socket) => {
@@ -66,10 +70,6 @@ io.on('connection', async (socket) => {
 app.get('/form', async (req, res) =>{
     res.render ('../views/pages/form')
 })
-
-/* app.get('/login', async (req, res) =>{
-    res.render ('../views/pages/login')
-}) */
 
 /* CREA EL /POST PRODUCTOS */
 app.post('/productos', async (req, res) =>{
