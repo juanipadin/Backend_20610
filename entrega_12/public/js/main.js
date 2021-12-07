@@ -51,7 +51,7 @@ form.addEventListener('submit', (event) => {
 socket.on('messages', (messages) => {
   const mensajeList = messages.map((message) =>`
         <div>
-            <strong style="color:blue">${message.author.id}</strong> <em style="color:brown">[${message.author.alias}]</em>:
+            <strong style="color:blue">${message.author.id}</strong> <em style="color:brown">[${message.author.fechaHora}]</em>:
             <em style="color:green">${message.text}</em> 
         </div>
         `).join(' ');
