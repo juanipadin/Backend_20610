@@ -25,6 +25,15 @@ authWebRouter.get('/login', (req, res) =>{
     }
 })
 
+authWebRouter.get('/singup', (req, res) =>{
+    const nombre = req.session?.nombre
+    if (nombre){
+        res.redirect('/')
+    } else{
+        res.sendFile(path.join(process.cwd(), 'views/singup.html'))
+    }
+})
+
 authWebRouter.get('/logout', (req, res) =>{
     const nombre = req.session?.nombre
     if (nombre){
@@ -65,11 +74,11 @@ passport.use('login', new LocalStrategy((userName, password, done) => {
             return done(null, false);
         }
     
-/*         if (!isValidPassword(user, password)) {
+        if (!isValidPassword(user, password)) {
             console.log('Invalid Password');
             return done(null, false);
         }
- */
+
         console.log({error, user});
         return done(null, {});
     })
@@ -118,10 +127,10 @@ authWebRouter.post(
 
 authWebRouter.post(
     '/signup/local',
-    passport.authenticate('signup', { failureRedirect: '/failsignup', session: false}),
+    passport.authenticate('signup', { failureRedirect: '/failsignup' }),
     (req, res) => {
         res.redirect('/form')
     }
 );
 
-module.exports= authWebRouter
+module.exports = authWebRouter
