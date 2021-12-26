@@ -9,7 +9,6 @@ const User = require('../../models/User')
 const createHash = require('../../utils/createHash')
 const isValidPassword = require('../../utils/isValidPassword.js')
 
-
 const authWebRouter = new Router();
 
 authWebRouter.get('/', (req, res) =>{
@@ -87,7 +86,7 @@ passport.use('login', new LocalStrategy((userName, password, done) => {
 passport.use('singup', new LocalStrategy(
     { passReqToCallback: true },
     (req, username, password, done) => {
-    User.findOne({ email: username }, (error, user) => {
+    User.findOne({ email: username }, (err, user) => {
         if (err) {
             console.log('Error in SignUp: ' + err);
             return done(err);
@@ -121,15 +120,15 @@ authWebRouter.post(
     '/auth/local',
     passport.authenticate('login', { failureRedirect: '/faillogin', session: false}),
     (req, res) => {
-        res.redirect('/form')
+        res.redirect('/')
     }
 );
 
 authWebRouter.post(
     '/signup/local',
-    passport.authenticate('signup', { failureRedirect: '/failsignup' }),
+    passport.authenticate('singup', { failureRedirect: '/failsignup', session: false }),
     (req, res) => {
-        res.redirect('/form')
+        res.redirect('/')
     }
 );
 
