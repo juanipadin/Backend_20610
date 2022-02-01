@@ -7,6 +7,7 @@ const passport = require('passport')
 const mongoose = require('mongoose')
 const config = require('./config')
 
+
 /* CARGA DE PRODUCTOS */
 const Contenedor = require('./models/contenedor');
 const productosContenedor = new Contenedor('/data/productos.json')
