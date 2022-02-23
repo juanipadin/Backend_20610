@@ -3,7 +3,7 @@ const path = require('path')
 
 const productosWebRouter = new Router;
 
-productosWebRouter.get('/home', (req, res) => {
+productosWebRouter.get('/', (req, res) => {
     res.render(path.join(process.cwd(), '/views/pages/home.ejs'), { nombre: req.session.nombre })
 })
 

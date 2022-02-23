@@ -22,7 +22,7 @@ const io = new SocketServer(httpServer);
 
 /* CARGA DE SESION */
 const session = require( 'express-session' );
-const authWebRouter = require('./routers/web/auth')
+/* const authWebRouter = require('./routers/web/auth') */
 const productosWebRouter = require('./routers/web/home')
 const randomsApiRouter = require('./routers/web/randoms')
 const infoRouter = require('./routers/web/info')
@@ -47,12 +47,12 @@ app.use( express.static('public') );
 /* HABILITA EL USO DE EJS */
 app.set('view engine', 'ejs');
 
-app.use(authWebRouter)
+/* app.use(authWebRouter) */
 app.use(productosWebRouter)
 app.use(randomsApiRouter)
 app.use(infoRouter)
 
-app.use(session({
+/* app.use(session({
     store: MongoStore.create({ mongoUrl: config.mongoLocal.cnxStr }),
     secret: 'shhhhhhhhhhhhhhhhhhhhh',
     resave: false,
@@ -61,7 +61,7 @@ app.use(session({
     cookie: {
         maxAge: 60000
     }
-}))
+})) */
 
 app.use(passport.initialize());
 app.use(passport.session());
@@ -85,7 +85,7 @@ io.on('connection', async (socket) => {
     socket.on('new-message', async data => {
         data.fechaHora = new Date().toLocaleString();
         await mensajes.saveMessages(data);
-        const messages = await mensajes.getMessages();
+        const messages = await mensajes.getMessagess();
         io.sockets.emit('messages', messages);
     }) 
 })
@@ -111,16 +111,15 @@ app.get('/list-productos', async (req, res) =>{
     })
 })
 
-/* REALIZA LA CONECCIÓN Y VERIFICA ERRORES */
-const PORT = 8080;
+/* REALIZA LA CONEXIÓN Y VERIFICA ERRORES */
 
-mongoose.connect(config.mongoLocal.cnxStr, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
+/* mongoose.connect(config.mongoLocal.cnxStr, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
     if(err) {
       console.error('Erro connection mongo');
-    }
+    } */
 
-const connectedServer = httpServer.listen(PORT, () => {
+const connectedServer = httpServer.listen(process.env.PORT || 8080, () => {
     console.log(`Servidor en Http con Websocket escuchando en el puerto ${connectedServer.address().port}`)
 })
 
-connectedServer.on('error', error => console.log(`Eror en el servidor ${PORT}`))})
+connectedServer.on('error', error => console.log(`Eror en el servidor ${PORT}`))

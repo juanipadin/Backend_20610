@@ -1,50 +1,12 @@
 [
   {
-    "author": {
-      "id": "pepegrillo@hotmail.com",
-      "nombre": "Pepe",
-      "apellido": "Grillo",
-      "edad": "20",
-      "alias": "PepeGrillo",
-      "avatar": "www.avatar.com/pepegrillo",
-      "fechaHora": "24/10/2021 12:33:31"
-    },
-    "text": "Hola"
+    "email": "pepe@grillo.com",
+    "texto": "Hola",
+    "fechaHora": "4/2/2022 17:19:20"
   },
   {
-    "author": {
-      "id": "hercules33@hotmail.com",
-      "nombre": "Hercules",
-      "apellido": "Zeuz",
-      "edad": "33",
-      "alias": "ZeuzOlimpo",
-      "avatar": "www.avatar.com/zeuzolimpo",
-      "fechaHora": "24/10/2021 12:35:31"
-    },
-    "text": "Como Estas?"
-  },
-  {
-    "author": {
-      "id": "prueba@hotmail.com",
-      "nombre": "Pepe",
-      "apellido": "Grillo",
-      "edad": "20",
-      "alias": "PepeGrillo",
-      "avatar": "www.avatar.com/pepegrillo",
-      "fechaHora": "24/10/2021 12:37:31"
-    },
-    "text": "Todo bien, vos?"
-  },
-  {
-    "author": {
-      "id": "hercules33@hotmail.com",
-      "nombre": "Hercules",
-      "apellido": "Zeuz",
-      "edad": "33",
-      "alias": "ZeuzOlimpo",
-      "avatar": "www.avatar.com/zeuzolimpo",
-      "fechaHora": "24/10/2021 12:38:31"
-    },
-    "text": "Perfecto, gracias por preguntar"
+    "email": "juan@perez.com",
+    "texto": "Como estas?",
+    "fechaHora": "4/2/2022 19:14:22"
   }
 ]
