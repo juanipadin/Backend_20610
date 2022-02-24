@@ -1,8 +1,9 @@
 const ContenedorArchivo = require('../../contenedores/ContenedorArchivo');
+const config = require('../../config.js')
 
 class ProductosDaoArchivos extends ContenedorArchivo{
-    constructor(){
-        super('./data/productos.json')
+    constructor(ruta){
+        this.ruta = `${config.fileSystem.path}/${ruta}`;
     }
 
     async getAll(){

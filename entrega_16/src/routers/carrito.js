@@ -2,8 +2,11 @@ const express = require('express');
 
 const carritoRouter = express.Router();
 
-const { CartDao } = require('../daos'); 
-const cartDao = new CartDao();
+const PersistenceFactory = require('../daos/index.js'); 
+
+const getPersistence = require('../../scripts/getPersistence.js');
+
+const { carritosDao: cartDao } = PersistenceFactory.getPersist(getPersistence())
 
 carritoRouter.post('/', async (req, res) =>{
     let cart = req.body;

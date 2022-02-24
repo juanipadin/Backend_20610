@@ -8,7 +8,7 @@ const options = {
         }
     },
     file: {
-        path: './data'
+        path: './DB'
     },
     
     firestore:{

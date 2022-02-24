@@ -1,12 +1,12 @@
 const express = require('express');
 const productosRouter = express.Router();
 
-const { ProductDao } = require('../daos'); 
-const productDao = new ProductDao();
-
+const PersistenceFactory = require('../daos/index.js'); 
 
 const isAdmin = require( '../../middlewares/isAdmin' );
+const getPersistence = require('../../scripts/getPersistence.js');
 
+const { productDao } = PersistenceFactory.getPersist(getPersistence())
 
 productosRouter.get('/', async (req, res) =>{
     console.log(productDao)
@@ -17,6 +17,7 @@ productosRouter.get('/', async (req, res) =>{
 
 productosRouter.get('/:id', async (req, res) =>{
     const idProducto = req.params.id
+    console.log(idProducto)
     const data = await productDao.getById(idProducto)
 
     res.send({data})

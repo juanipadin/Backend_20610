@@ -8,10 +8,10 @@ const config = {
     DB_SQLITE_PATH: './DB/SQLITE/ecommerce.sqlite'
 };
 
-export default {
+module.exports = {
     ...config,
     fileSystem: {
-        path: `./${config.FILE_PATH}`
+        path: `./DB`
     },
     mongodb: {
         cnxStr: `mongodb+srv://${config.DB_USER}:${config.DB_PASSWORD}@${config.DB_HOST}/${config.DB_DATABASE}?retryWrites=true&w=majority`,

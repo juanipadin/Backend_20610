@@ -1,55 +1,41 @@
-require('dotenv').config()
+class PersistenceFactory{
+    static async getPersist(pers){
+        switch (pers) {
+            case 'memoria':
+                const {default : ProductosDaoMemoria} = require('./productos/ProductosDaoMemoria')
+                const {default : CarritoDaoMemoria} = require('./carrito/CarritoDaoMemoria');
 
-const ProductosDaoArchivos = require('./productos/ProductosDaoArchivos');
-const ProductosDaoMongo = require( './productos/ProductosDaoMongo' );
-const ProductosDaoMemoria = require( './productos/ProductosDaoMemoria' );
-const ProductosDaoFirestore = require( './productos/ProductosDaoFirestore' );
+                return{
+                    productosDao : new ProductosDaoMemoria(),
+                    carritosDao  : new CarritoDaoMemoria()
+                }
+            case 'firebase':
+                const {default : ProductosDaoFirestore} = require('./productos/ProductosDaoFirestore')
+                const {default : CarritoDaoFirestore} = require('./carrito/CarritoDaoFirestore');
 
-const CarritoDaoArchivos = require('./carrito/CarritoDaoArchivos');
-const CarritoDaoMongo = require( './carrito/CarritoDaoMongo' );
-const CarritoDaoMemoria = require( './carrito/CarritoDaoMemoria' );
-const CarritoDaoFirestore = require( './carrito/CarritoDaoFirestore' );
+                return{
+                    productosDao : new ProductosDaoFirestore(),
+                    carritosDao  : new CarritoDaoFirestore()
+                }
 
-const daos = {}
+            case 'mongodb':
+                const {default : ProductosDaoMongo} = require('./productos/ProductosDaoMongo')
+                const {default : CarritoDaoMongo} = require('./carrito/CarritoDaoMongo');
 
-/* ENV PRODUCTOS */
-daos['ProductDao'] = ProductosDaoFirestore
+                return{
+                    productosDao : new ProductosDaoMongo(),
+                    carritosDao  : new CarritoDaoMongo(),
+                }
+            
+            default:
+                const {default : ProductosDaoArchivos} =  require('./productos/ProductosDaoArchivos.js')
+                const {default : CarritoDaoArchivos} = require('./carrito/CarritoDaoArchivos.js');
 
-if (process.env.STORAGE === 'mongodb') {
-    daos['ProductDao'] = ProductosDaoMongo;
-}
+                return{
+                    productosDao : new ProductosDaoArchivos(),
+                    carritosDao : new CarritoDaoArchivos()
+        }
+    }
+}}
 
-if (process.env.STORAGE === 'memory') {
-    daos['ProductDao'] = ProductosDaoMemoria;
-}
-
-if (process.env.STORAGE === 'firestore') {
-    daos['ProductDao'] = ProductosDaoFirestore; 
-}
-
-if (process.env.STORAGE === 'file') {
-    daos['ProductDao'] = ProductosDaoArchivos;
-}
-
-
-
-/* ENV CARRITO */
-daos['CartDao'] = CarritoDaoFirestore
-
-if (process.env.STORAGE === 'mongodb') {
-    daos['CatDao'] = CarritoDaoMongo;
-}
-
-if (process.env.STORAGE === 'memory') {
-    daos['CatDao'] = CarritoDaoMemoria;
-}
-
-if (process.env.STORAGE === 'firestore') {
-    daos['CatDao'] = CarritoDaoFirestore; 
-}
-
-if (process.env.STORAGE === 'file') {
-    daos['CatDao'] = CarritoDaoArchivos;
-}
-
-module.exports = daos;
+module.exports = PersistenceFactory;
