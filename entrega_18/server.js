@@ -1,6 +1,6 @@
 const express = require('express');
 const { Server : SocketServer } = require('socket.io');
-const { Server : HttpServer} = require('http');
+const { Server : HttpServer, request} = require('http');
 const { connected } = require( 'process' );
 const MongoStore = require('connect-mongo')
 const passport = require('passport')
@@ -22,8 +22,8 @@ const io = new SocketServer(httpServer);
 /* CARGA DE SESION */
 const session = require( 'express-session' );
 const authWebRouter = require('./routers/web/auth')
-const productosWebRouter = require('./routers/web/home')
-
+const productosWebRouter = require('./routers/web/home');
+const { getProducts, postProducts, deleteProduct, putProduct } = require('./test/axios');
 
 /* HABILITA EL USO DEL JSON */
 app.use(express.json());
@@ -64,7 +64,6 @@ app.use(passport.session());
 
 /* CREA EL WEBSOCKET */
 io.on('connection', async (socket) => {
-    console.log(`Nuevo cliente conectado ${socket.id}`)
 
     /* CARGA DE PRODUCTOS INGRESADOS */
     socket.on('new-product', async(producto) =>{
@@ -98,6 +97,33 @@ app.post('/productos', async (req, res) =>{
     res.redirect('/list-productos');
 }) 
 
+app.delete('/productos/:id', async (req, res) =>{
+    idProducto = Number(req.params.id)
+    const productoAEliminiar = await productosContenedor.getById(idProducto)
+    if (productoAEliminiar === null ){
+        res.send({ error : 'Producto no Encontrado' })
+    }else {
+        await productosContenedor.deleteById(idProducto);
+        res.send({ message : 'Producto Eliminado de Forma Correcta' })
+    }
+}) 
+
+app.put('/productos/:id', async (req, res) =>{
+    const datosNuevos = req.body
+    const productoUpdate = await productosContenedor.update(req.params.id,datosNuevos)
+    if (!productoUpdate){
+        res.send({
+            error : 'Producto no encontrado',
+            data : productoUpdate
+        })
+    } else{
+        res.send({
+            message :'Operación Exitosa',
+            data : productoUpdate
+        })}
+})
+
+
 /* CREA LISTA DE PRODUCTOS */
 app.get('/list-productos', async (req, res) =>{
     const productos = await productosContenedor.getAll()
@@ -111,11 +137,21 @@ const PORT = 8080;
 
 mongoose.connect(config.mongoLocal.cnxStr, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
     if(err) {
-      console.error('Erro connection mongo');
+      console.error('Error connection mongo');
     }
 
 const connectedServer = httpServer.listen(PORT, () => {
     console.log(`Servidor en Http con Websocket escuchando en el puerto ${connectedServer.address().port}`)
 })
+
+
+
+/* Promise.all([getProducts(), postProducts(), deleteProduct(),putProduct()])
+    .then(function(results){
+        const getAxios = results[0];
+        const postAxios = results[1];
+        const deleteAxios = results[2];
+        const putAxios = results[3]
+    }) */
 
 connectedServer.on('error', error => console.log(`Eror en el servidor ${PORT}`))})
