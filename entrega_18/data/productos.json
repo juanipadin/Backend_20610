@@ -28,5 +28,11 @@
     "precio": "3",
     "foto": "https://cdn1.iconfinder.com/data/icons/bicycle-apparel/1772/Craft_Cool_Bike_Socks_Cycling_Socks-256.png",
     "id": 5
+  },
+  {
+    "nombre": "Rueda 26 New with .put",
+    "precio": "5",
+    "foto": "https://contents.mediadecathlon.com/p1333/k$3a115af4670642212ca83006afe2ea23/sq/rueda-bicicleta-mtb-26-delantera-v-brake-pared-simple-negra.jpg?format=auto&f=640x640",
+    "id": 6
   }
 ]

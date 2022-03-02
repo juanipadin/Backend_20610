@@ -21,9 +21,14 @@ const io = new SocketServer(httpServer);
 
 /* CARGA DE SESION */
 const session = require( 'express-session' );
+
+/* CARGA DE MÉTODOS */
 const authWebRouter = require('./routers/web/auth')
-const productosWebRouter = require('./routers/web/home');
-const { getProducts, postProducts, deleteProduct, putProduct } = require('./test/axios');
+const homeRouter = require('./routers/web/home');
+const productosRouter = require('./routers/web/productos');
+
+/* CARGA MÓDULOS DE TEST DE AXIOS */
+const {testAxios} = require('./test/axios');
 
 /* HABILITA EL USO DEL JSON */
 app.use(express.json());
@@ -33,19 +38,17 @@ app.use(session({
     secret: 'secreto',
     reseave: false,
     saveUninitialized: false,
-    cookie: {
-        maxAge: 60000
-    }
+    cookie: { maxAge: 60000 }
 }))
 
 /* CREA RELACIÓN A CARPETA 'PUBLIC' */
 app.use( express.static('public') );
 
-/* HABILITA EL USO DE EJS */
-app.set('view engine', 'ejs');
 
+/* CARGA LOS ROUTERS */
 app.use(authWebRouter)
-app.use(productosWebRouter)
+app.use(homeRouter)
+app.use(productosRouter)
 
 app.use(session({
     store: MongoStore.create({ mongoUrl: config.mongoLocal.cnxStr }),
@@ -53,9 +56,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     rolling: true,
-    cookie: {
-        maxAge: 60000
-    }
+    cookie: { maxAge: 60000 }
 }))
 
 app.use(passport.initialize());
@@ -79,57 +80,9 @@ io.on('connection', async (socket) => {
     socket.on('new-message', async data => {
         data.fechaHora = new Date().toLocaleString();
         await mensajes.saveMessages(data);
-        const messages = await mensajes.getMessages();
+        const messages = await mensajes.getMessagess();
         io.sockets.emit('messages', messages);
     }) 
-})
-
-/* CREA EL /FORM */
-app.get('/form', async (req, res) =>{
-    res.render ('../views/pages/form')
-})
-
-/* CREA EL /POST PRODUCTOS */
-app.post('/productos', async (req, res) =>{
-    const newProducto = req.body; 
-    console.log(newProducto)
-    const idProductoNuevo = await productosContenedor.save(newProducto);
-    res.redirect('/list-productos');
-}) 
-
-app.delete('/productos/:id', async (req, res) =>{
-    idProducto = Number(req.params.id)
-    const productoAEliminiar = await productosContenedor.getById(idProducto)
-    if (productoAEliminiar === null ){
-        res.send({ error : 'Producto no Encontrado' })
-    }else {
-        await productosContenedor.deleteById(idProducto);
-        res.send({ message : 'Producto Eliminado de Forma Correcta' })
-    }
-}) 
-
-app.put('/productos/:id', async (req, res) =>{
-    const datosNuevos = req.body
-    const productoUpdate = await productosContenedor.update(req.params.id,datosNuevos)
-    if (!productoUpdate){
-        res.send({
-            error : 'Producto no encontrado',
-            data : productoUpdate
-        })
-    } else{
-        res.send({
-            message :'Operación Exitosa',
-            data : productoUpdate
-        })}
-})
-
-
-/* CREA LISTA DE PRODUCTOS */
-app.get('/list-productos', async (req, res) =>{
-    const productos = await productosContenedor.getAll()
-    res.render('pages/vista_producto',{
-        productos : productos,
-    })
 })
 
 /* REALIZA LA CONECCIÓN Y VERIFICA ERRORES */
@@ -144,14 +97,8 @@ const connectedServer = httpServer.listen(PORT, () => {
     console.log(`Servidor en Http con Websocket escuchando en el puerto ${connectedServer.address().port}`)
 })
 
+/* HABILITA EL USO DEL TEST AXIOS */
+//testAxios()
 
-
-/* Promise.all([getProducts(), postProducts(), deleteProduct(),putProduct()])
-    .then(function(results){
-        const getAxios = results[0];
-        const postAxios = results[1];
-        const deleteAxios = results[2];
-        const putAxios = results[3]
-    }) */
 
 connectedServer.on('error', error => console.log(`Eror en el servidor ${PORT}`))})

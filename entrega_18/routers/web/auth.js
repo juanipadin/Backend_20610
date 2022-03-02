@@ -109,7 +109,7 @@ passport.use('singup', new LocalStrategy(
                 return done(err);
             }
             console.log(user)
-            console.log('User Registration succesful');
+            ('User Registration succesful');
             return done(null, userCreated);
         });
     })

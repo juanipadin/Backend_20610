@@ -23,4 +23,14 @@ async function putProduct(){
     {"nombre" : "Rueda 26 New with .put"})
 }
 
-module.exports = {getProducts, postProducts,deleteProduct,putProduct}
+const testAxios = () =>{
+    Promise.all([getProducts(), postProducts(), deleteProduct(),putProduct()])
+        .then(function(results){
+            const getAxios = results[0];
+            const postAxios = results[1];
+            const deleteAxios = results[2];
+            const putAxios = results[3]
+        })
+    }
+
+module.exports = {testAxios}
