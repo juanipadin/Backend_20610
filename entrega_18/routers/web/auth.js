@@ -108,8 +108,7 @@ passport.use('singup', new LocalStrategy(
                 console.log('Error in Saving user: ' + err);
                 return done(err);
             }
-            console.log(user)
-            ('User Registration succesful');
+            console.log('User Registration succesful');
             return done(null, userCreated);
         });
     })

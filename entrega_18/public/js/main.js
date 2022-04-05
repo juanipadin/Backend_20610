@@ -51,8 +51,8 @@ form.addEventListener('submit', (event) => {
 socket.on('messages', (messages) => {
   const mensajeList = messages.map((message) =>`
         <div>
-            <strong style="color:blue">${message.author.id}</strong> <em style="color:brown">[${message.author.fechaHora}]</em>:
-            <em style="color:green">${message.text}</em> 
+            <strong style="color:blue">${message.email}</strong> <em style="color:brown">[${message.fechaHora}]</em>:
+            <em style="color:green">${message.texto}</em> 
         </div>
         `).join(' ');
   const renderMensajes = document.getElementById('lista_mensaje_final');

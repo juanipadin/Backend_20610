@@ -1,4 +1,5 @@
 const Router = require('express')
+const path = require('path')
 
 /* CARGA DE PRODUCTOS */
 const Contenedor = require('../../models/contenedor');
@@ -50,9 +51,9 @@ productosRouter.put('/productos/:id', async (req, res) =>{
 })
 
 /* CREA LISTA DE PRODUCTOS */
-productosRouter.get('/list-productos', async (req, res) =>{
+productosRouter.get('/lista-productos', async (req, res) =>{
     const productos = await productosContenedor.getAll()
-    res.render('pages/vista_producto',{
+    res.render(path.join(process.cwd(), '/views/pages/vista_producto.ejs'),{
         productos : productos,
     })
 })

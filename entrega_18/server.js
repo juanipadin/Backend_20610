@@ -50,15 +50,6 @@ app.use(authWebRouter)
 app.use(homeRouter)
 app.use(productosRouter)
 
-app.use(session({
-    store: MongoStore.create({ mongoUrl: config.mongoLocal.cnxStr }),
-    secret: 'shhhhhhhhhhhhhhhhhhhhh',
-    resave: false,
-    saveUninitialized: false,
-    rolling: true,
-    cookie: { maxAge: 60000 }
-}))
-
 app.use(passport.initialize());
 app.use(passport.session());
 
