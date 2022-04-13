@@ -1,4 +1,4 @@
-const bCrypt= require('bcrypt')
+const bcrypt= require('bcrypt')
 
 /**
  * 
@@ -7,7 +7,7 @@ const bCrypt= require('bcrypt')
  * @returns {boolean}
  */
 const isValidPassword = (user, password) => {
-    return bCrypt.compareSync(password, user.password);
+    return bcrypt.compareSync(password, user.password);
 }
 
 

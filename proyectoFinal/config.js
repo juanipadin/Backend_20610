@@ -1,12 +1,9 @@
-const options = {
-  mongodb: {
-      host: 'mongodb://localhost:27017/ecommerce',
-      options: {
-          useNewUrlParser: true,
-          useUnifiedTopology: true,
-          serverSelectionTimeoutMS: 5000,
-      }
-  },
+module.exports = {
+    PORT: process.env.PORT || 8080,
+    mongoLocal: {
+        client: 'mongodb',
+        cnxStr: 'mongodb://localhost:27017/ecommerce'
+    },
   file: {
       path: './data'
   },
@@ -24,5 +21,3 @@ const options = {
       "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-j5bs1%40logical-handler-318117.iam.gserviceaccount.com"
 }
 }
-
-module.exports = options;

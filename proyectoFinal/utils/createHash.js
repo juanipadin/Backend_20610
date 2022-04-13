@@ -1,4 +1,4 @@
-const bCrypt = require('bCrypt')
+const bcrypt = require('bcrypt')
 
 
 /**
@@ -6,9 +6,9 @@ const bCrypt = require('bCrypt')
  * @param {string} password - The password to be hashed
  * @returns {string} password hashed
  */
-const createHash = (password) => bCrypt.hashSync(
+const createHash = (password) => bcrypt.hashSync(
   password,
-  bCrypt.genSaltSync(10),
+  bcrypt.genSaltSync(10),
   null);
 
 module.exports= createHash;

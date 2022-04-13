@@ -79,9 +79,10 @@ io.on('connection', async (socket) => {
 /* REALIZA LA CONECCIÓN Y VERIFICA ERRORES */
 const PORT = 8080;
 
-const connectedServer = httpServer.listen(PORT, () => {
+const connectedServer = httpServer.listen(process.env.PORT || 8080, () => {
     console.log(`Servidor en Http con Websocket escuchando en el puerto ${connectedServer.address().port}`)
 })
+
 /* mongoose.connect(config.mongoLocal.cnxStr, { useNewUrlParser: true, useUnifiedTopology: true }, err => {
     if(err) {
       console.error('Error connection mongo');
